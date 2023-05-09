@@ -41,7 +41,7 @@
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/my_account" role="button"
                                aria-haspopup="true" aria-expanded="false">Moje konto</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/failures">Awarie</a>
+                                <a class="dropdown-item" href="servicemen/failures">Moje awarie</a>
 
                                 <!-- todo: verify if user is admin -->
                                 <a class="dropdown-item" href="/servicemen">Serwisanci</a>
@@ -76,6 +76,7 @@
                             <td>{{ item.date }}</td>
                             <td>
                                 <!-- todo: verify if user is logged in to see failures -->
+                                <!-- todo: endpoint to specific failure -->
                                 <a class="btn btn-secondary">Więcej</a>
                             </td>
                         </tr>
