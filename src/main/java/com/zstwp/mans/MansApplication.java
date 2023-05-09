@@ -1,4 +1,4 @@
-package com.mans.mans;
+package com.zstwp.mans;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
