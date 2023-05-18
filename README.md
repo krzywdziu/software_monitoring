@@ -7,6 +7,7 @@ Project is set as a multi-module maven project. Modules list:
 
 ## Local run (e.g. from IDE):
 * connect to vpn-agh 
+* configure your application-local.yaml file
 * compile and run using intelliJ
 * alternatively
   * from linux terminal: `./mvnw clean install` OR windows cmd: `mvnw.cmd clean install` 
