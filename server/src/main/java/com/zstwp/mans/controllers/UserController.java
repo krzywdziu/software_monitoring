@@ -16,15 +16,19 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "api/v1/user")
+@RequestMapping(path = "user/")
 public class UserController {
 
     @NonNull
     private final UserService userService;
 
     @GetMapping
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public List<User> getUsers(@PathVariable(value = "userId", required = false) Integer userId) {
+        if (userId == null) {
+            return userService.getUsers();
+        } else {
+            return userService.getUsers(); // TODO: getUserByID
+        }
     }
 
     @PostMapping
