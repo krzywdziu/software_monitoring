@@ -4,28 +4,42 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-@Entity
-@Table(name = "specializations")
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "specializations")
 public class Specialization {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @ManyToMany(mappedBy = "specializations")
+    private Set<User> users = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
