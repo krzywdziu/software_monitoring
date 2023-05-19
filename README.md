@@ -1,7 +1,7 @@
 # ZSTwP
 ## Design
 Project is set as a multi-module maven project. Modules list:
-* client - apps/services monitoring based on provided configuration, sending alerts
+* agent - apps/services monitoring based on provided configuration, sending alerts
 * server - alert processing, notification controller, webui
 * common - common classes used across modules
 
