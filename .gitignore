@@ -36,3 +36,6 @@ build/
 #mvnw
 #mvnw.cmd
 #.mvn/
+
+### local config ###
+application-local.yaml
