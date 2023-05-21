@@ -7,7 +7,9 @@ import com.zstwp.mans.database.repositories.AlertRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -17,6 +19,10 @@ public class AlertService {
 
     public List<Alert> getAllAlerts() {
         return alertRepository.findAll();
+    }
+
+    public Alert getAlertById(long id) {
+        return alertRepository.findAlertById(id);
     }
 
     public List<Alert> getAlertsBySeverity(AlertSeverity severity) {
@@ -30,5 +36,7 @@ public class AlertService {
     public List<Alert> getAlertsByStatus(AlertStatus status) {
         return alertRepository.findAllByStatus(status);
     }
+
+
 
 }

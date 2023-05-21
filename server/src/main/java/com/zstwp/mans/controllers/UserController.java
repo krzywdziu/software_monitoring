@@ -49,13 +49,4 @@ public class UserController {
 //
 //    }
 
-//    @PostMapping
-//    public void registerNewUser(@RequestBody UserModel user) {
-//        userService.addNewUser(user);
-//    }
-//
-//    @DeleteMapping(path = "{userId}")
-//    public void deleteUser(@PathVariable("userId") long userId) {
-//        userService.deleteUser(userId);
-//    }
 }
