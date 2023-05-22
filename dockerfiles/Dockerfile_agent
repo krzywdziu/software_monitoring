@@ -4,7 +4,6 @@ WORKDIR /workdir
 
 COPY pom.xml .
 COPY agent ./agent
-COPY server ./server
 
 RUN mvn package -DskipTests
 
