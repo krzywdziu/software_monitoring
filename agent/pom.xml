@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zstwp.mans</groupId>
-    <artifactId>mans-agent</artifactId>
+    <artifactId>agent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mans-agent</name>
     <description>Monitoring and notification system</description>
