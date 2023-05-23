@@ -12,10 +12,9 @@ app.use(express.static(distDir));
 
 /*
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src', 'app', 'home', 'home.html'));
+  res.sendFile(path.join(__dirname, 'src', 'app', 'home', 'index.html'));
 });
-
- */
+*/
 
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);
