@@ -10,10 +10,12 @@ app.use(bodyParser.json());
 var distDir = path.join(__dirname, "/dist/");
 app.use(express.static(distDir));
 
-// Dodaj trasę, która serwuje moduł Angular w katalogu src/app/home
+/*
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'app', 'home', 'home.html'));
 });
+
+ */
 
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);
