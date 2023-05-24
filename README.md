@@ -17,3 +17,10 @@ Project is a collection of independent services that together form a whole syste
 
 ## Server's api documentation
 * http://localhost:8080/swagger-ui.html
+
+
+### run using docker compose
+
+```bash
+docker compose up --build -d
+```

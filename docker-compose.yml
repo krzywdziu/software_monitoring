@@ -61,6 +61,17 @@ services:
     env_file:
       - configs/server.env
 
+  frontend:
+    build:
+      context: webui/angular-app
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    networks:
+      mans-network:
+    ports:
+      - "4200:80"
+
 networks:
   mans-network:
     driver: bridge
