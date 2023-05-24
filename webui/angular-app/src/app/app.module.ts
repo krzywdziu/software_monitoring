@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { SingleAlertComponent } from './single-alert/single-alert.component';
+import { ServicemenDashboardComponent } from './servicemen-dashboard/servicemen-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SingleAlertComponent } from './single-alert/single-alert.component';
     HomeComponent,
     LoginComponent,
     AppNavbarComponent,
-    SingleAlertComponent
+    SingleAlertComponent,
+    ServicemenDashboardComponent
   ],
   imports: [
     BrowserModule,
