@@ -2,11 +2,9 @@ FROM maven:3.8.3-openjdk-17 as builder
 
 WORKDIR /workdir
 
-COPY pom.xml .
-COPY agent ./agent
-COPY server ./server
+COPY server/ server/
 
-RUN mvn package -DskipTests
+RUN cd /workdir/server && mvn package -DskipTests
 
 FROM openjdk:17.0-jdk-slim
 
