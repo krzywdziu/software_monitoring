@@ -1,0 +1,34 @@
+.accordion-button:focus,
+.form-control:focus {
+  border-color: white;
+  box-shadow: 0 0 1px 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.accordion-button:hover{
+  border-color: white;
+  box-shadow: 0 0 1px 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.btn:hover {
+  font-weight: bold;
+  color: #212529;
+  background-color: white;
+  border: 1px solid #212529;
+}
+
+h3.card-title{
+  color: white;
+}
+
+div.serviceman-logo{
+  border: 2px solid #212529;
+  width: 4rem;
+  height: 4rem;
+  padding-left: 0.1rem;
+  padding-top: 1rem;
+}
+
+.accordion-button:not(.collapsed){
+  background: white;
+  color: #212529;
+}
