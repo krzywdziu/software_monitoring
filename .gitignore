@@ -39,3 +39,7 @@ build/
 
 ### local config ###
 application-local.yaml
+
+### angular ###
+.editconfig
+package-lock.json
