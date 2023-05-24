@@ -37,7 +37,8 @@
                                   <td>
                                     <!-- todo: verify if user is logged in to see failures -->
                                     <!-- todo: endpoint to specific failure -->
-                                    <a class="btn btn-secondary" href="/alert/{{ alert.id }}">Więcej</a>
+                                    <!-- use routerLink for redirect-->
+                                    <a class="btn btn-secondary" routerLink='/alert/{{alert.id}}'>Więcej</a>
                                   </td>
                                 </tr>
                                 </tbody>
