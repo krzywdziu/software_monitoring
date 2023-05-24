@@ -1,0 +1,50 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+        <section class="vh-30 gradient-custom">
+          <div class="container py-5 px-0 h-100">
+            <div class="col-12">
+              <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body px-5 py-0 text-center">
+                  <div class="mt-md-4 pb-4">
+
+                    <h2 class="fw-bold text-uppercase">AWARIA NR {{ alert.id }}</h2>
+
+                    <hr>
+                    <p class="text-white-50">ADRES IP URZĄDZENIA</p>
+                    <p class="fw-bold text-uppercase">{{ alert.boxIp }}</p>
+
+                    <hr>
+                    <p class="text-white-50">STATUS</p>
+                    <p class="fw-bold text-uppercase">{{ alert.status }}</p>
+
+                    <hr>
+                    <p class="text-white-50">OPIS AWARII</p>
+                    <p class="fw-bold mb-2 text-uppercase">{{ alert.description }}</p>
+
+                    <hr>
+                    <p class="text-white-50">PRIORYTET</p>
+                    <p class="fw-bold text-uppercase">{{ alert.severity }}</p>
+
+                    <hr>
+                    <p class="text-white-50">DATA POWSTANIA AWARII</p>
+                    <p class="fw-bold text-uppercase">{{ alert.timestamp }}</p>
+
+                    <!-- todo: asignee -->
+
+                  </div>
+                </div>
+                <div class="form-outline form-white mb-4">
+                  <form>
+                    <button class="btn btn-dark btn-lg" style="background-color: white; color: black" type="submit">Przypisz do mnie</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
