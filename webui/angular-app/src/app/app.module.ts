@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { SingleAlertComponent } from './single-alert/single-alert.component';
 import { ServicemenDashboardComponent } from './servicemen-dashboard/servicemen-dashboard.component';
+import { AlertHistoryComponent } from './alert-history/alert-history.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ServicemenDashboardComponent } from './servicemen-dashboard/servicemen-
     LoginComponent,
     AppNavbarComponent,
     SingleAlertComponent,
-    ServicemenDashboardComponent
+    ServicemenDashboardComponent,
+    AlertHistoryComponent
   ],
   imports: [
     BrowserModule,

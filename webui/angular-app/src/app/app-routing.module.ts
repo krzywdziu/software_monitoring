@@ -5,6 +5,7 @@ import {SingleAlertComponent} from "./single-alert/single-alert.component";
 import {ServicemenDashboardComponent} from "./servicemen-dashboard/servicemen-dashboard.component";
 import {LoginComponent} from "./login/login.component";
 import {AppNavbarComponent} from "./app-navbar/app-navbar.component";
+import {AlertHistoryComponent} from "./alert-history/alert-history.component";
 
 // todo: jak będzie podstrona dla pracownika to tu dodać
 // todo: zmienic endpoint dla dashboard
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: '', redirectTo: '/alert/all', pathMatch: 'full'},
   {path: 'alert/all', component: HomeComponent},
   {path: 'alert/:id', component: SingleAlertComponent},
-  {path: 'user/all', component: ServicemenDashboardComponent}
+  {path: 'user/all', component: ServicemenDashboardComponent},
+  {path: 'alert/all', component: AlertHistoryComponent}
 ];
 
 @NgModule({
