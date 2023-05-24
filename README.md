@@ -14,6 +14,7 @@ Project is a collection of independent services that together form a whole syste
 * alternatively
   * from linux terminal: `./mvnw clean install` OR windows cmd: `mvnw.cmd clean install` 
   + run (server) with `java -jar ./server/target/server-0.0.1-SNAPSHOT.jar` (Java 17)
+* run frontend typing `ng serve` from /webui/angular-app
 
 ## Server's api documentation
 * http://localhost:8080/swagger-ui.html
