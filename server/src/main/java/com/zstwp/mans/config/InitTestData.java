@@ -5,6 +5,7 @@ import com.zstwp.mans.database.entities.AlertSeverity;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.database.entities.Specialization;
 import com.zstwp.mans.database.entities.User;
+import com.zstwp.mans.database.entities.UserRole;
 import com.zstwp.mans.database.repositories.AlertRepository;
 import com.zstwp.mans.database.repositories.SpecializationRepository;
 import com.zstwp.mans.database.repositories.UserRepository;
@@ -69,12 +70,32 @@ public class InitTestData {
                     List.of(a1, a2, a3, a4, a5)
             );
 
+            Specialization s1 = Specialization.builder()
+                    .name("Docker")
+//                    .users(newHashSet(u1))
+                    .build();
+            Specialization s2 = Specialization.builder()
+                    .name("Gotowanie")
+//                    .users(newHashSet(u1, u2))
+                    .build();
+            Specialization s3 = Specialization.builder()
+                    .name("Leadership")
+//                    .users(newHashSet(u3))
+                    .build();
+
+            specializationRepository.saveAll(
+                    List.of(s1, s2, s3)
+            );
+
+
             User u1 = User.builder()
                     .firstName("Robert")
                     .lastName("Makłowicz")
                     .email("robert@gmail.com")
                     .phoneNumber("123456789")
                     .passwordHash("{noop}pass")
+                    .role(UserRole.ADMIN)
+                    .specializations(null) //!
                     .build();
 
             User u2 = User.builder()
@@ -83,6 +104,8 @@ public class InitTestData {
                     .email("karol@gmail.com")
                     .phoneNumber("987654321")
                     .passwordHash("{noop}pass")
+                    .role(UserRole.SERVICEMAN)
+                    .specializations(newHashSet(s1, s2, s3))
                     .build();
 
             User u3 = User.builder()
@@ -91,28 +114,24 @@ public class InitTestData {
                     .email("jan3@gmail.com")
                     .phoneNumber("111222333")
                     .passwordHash("{noop}pass")
+                    .role(UserRole.SERVICEMAN)
+                    .specializations(newHashSet(s3))
+                    .build();
+
+            User u4 = User.builder()
+                    .firstName("Zygmunt")
+                    .lastName("Stary")
+                    .email("zigi@gmail.com")
+                    .phoneNumber("111222333")
+                    .passwordHash("{noop}pass")
+                    .role(UserRole.SERVICEMAN)
+                    .specializations(newHashSet(s1,s3))
                     .build();
 
             userRepository.saveAll(
-                    List.of(u1, u2, u3)
+                    List.of(u1, u2, u3, u4)
             );
 
-            Specialization s1 = Specialization.builder()
-                    .name("Docker")
-                    .users(newHashSet(u1))
-                    .build();
-            Specialization s2 = Specialization.builder()
-                    .name("Gotowanie")
-                    .users(newHashSet(u1, u2))
-                    .build();
-            Specialization s3 = Specialization.builder()
-                    .name("Leadership")
-                    .users(newHashSet(u3))
-                    .build();
-
-            specializationRepository.saveAll(
-                    List.of(s1, s2, s3)
-            );
         };
     }
 

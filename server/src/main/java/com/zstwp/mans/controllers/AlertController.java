@@ -54,9 +54,6 @@ public class AlertController {
 //    public List<Alert> getAlertsBySeverity(@PathVariable String boxIp) {
 //        return alertService.getAlertsByBoxIp(boxIp);
 //    }
-//    @RequestMapping
-//    public List<Alert> getAlertOnBox(@RequestParam AlertSeverity severity,
-//                                 @RequestParam(required = false) AlertStatus status,
-//                                 @RequestParam(required = false, value = "ip") String boxIp)
+
 
 }

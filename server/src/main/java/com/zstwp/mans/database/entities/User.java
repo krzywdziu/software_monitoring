@@ -1,5 +1,6 @@
 package com.zstwp.mans.database.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -52,6 +53,7 @@ public class User {
     @Column(nullable = false)
     private String passwordHash;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinColumn(name = "user_id")
     private List<Alert> alerts;
@@ -61,6 +63,7 @@ public class User {
 
     private String phoneNumber;
 
+//    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "users_specializations",
