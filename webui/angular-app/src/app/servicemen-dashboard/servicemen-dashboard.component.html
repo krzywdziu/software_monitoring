@@ -11,7 +11,7 @@
                 <h2 class="accordion-header" [id]="'heading' + i">
                   <button class="accordion-button collapsed" type="button" [attr.data-bs-toggle]="'collapse'"
                           [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="false" [attr.aria-controls]="'collapse' + i">
-                    Serwisant #{{serviceman.id + 1}}
+                    Serwisant #{{serviceman.id}}
                   </button>
                 </h2>
                 <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i"
@@ -49,6 +49,7 @@
                               </tbody>
                             </table>
                           </div>
+                          <!-- todo: new template and url -->
                           <a href="#" class="btn btn-dark btn-block mt-2">Historia alertów</a>
                         </td>
                         <td style="width: 70%;">

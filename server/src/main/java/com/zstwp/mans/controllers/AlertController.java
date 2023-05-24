@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/alert")
 public class AlertController {

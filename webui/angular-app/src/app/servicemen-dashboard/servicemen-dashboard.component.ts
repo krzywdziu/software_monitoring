@@ -1,23 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-servicemen-dashboard',
   templateUrl: './servicemen-dashboard.component.html',
   styleUrls: ['./servicemen-dashboard.component.css']
 })
-export class ServicemenDashboardComponent {
-  public servicemen: any[] = [
-    {
-      "id": 0,
-      "firstName": "Jan",
-      "lastName": "Kowalski",
-      "phoneNumber": "123123123",
-      "email": "kowalski@gamil.com",
-    }, {
-      "id": 1,
-      "firstName": "Piotr",
-      "lastName": "Nowak",
-      "phoneNumber": "321321321",
-      "email": "pnowak@gamil.com",
-    }]
+export class ServicemenDashboardComponent implements OnInit {
+  public servicemen: any[] = [];
+
+  constructor(private http: HttpClient) {}
+
+  // todo: zmienic url gdy bedzie endpoint
+  ngOnInit(): void {
+    this.http.get<any[]>('http://localhost:8080/user/all').subscribe(
+      res => this.servicemen = res,
+      err => console.log('Error: ', err)
+    )
+  }
 }
