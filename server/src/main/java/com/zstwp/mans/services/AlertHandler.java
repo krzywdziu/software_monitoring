@@ -56,7 +56,7 @@ public class AlertHandler {
                     System.out.println("mailing to marekrospong@gmail.com");
                     emailService.sendEmail(
 //                            user.getEmail(),
-                            "marekrospond@gmail.com",
+                            "mailAddr",
                             "New alert!",
                             "Hello " + user.getFirstName() + ", a new alert has been assigned to you!"
                     );
