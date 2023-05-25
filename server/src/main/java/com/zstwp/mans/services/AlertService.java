@@ -1,20 +1,14 @@
 package com.zstwp.mans.services;
 
-import com.zstwp.mans.config.RandomEnumGenerator;
 import com.zstwp.mans.database.entities.Alert;
 import com.zstwp.mans.database.entities.AlertSeverity;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.database.repositories.AlertRepository;
 import com.zstwp.mans.dto.AlertDto;
 import lombok.RequiredArgsConstructor;
-import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
 @RequiredArgsConstructor
 @Service

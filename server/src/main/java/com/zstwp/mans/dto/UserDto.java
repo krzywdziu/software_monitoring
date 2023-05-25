@@ -3,7 +3,6 @@ package com.zstwp.mans.dto;
 import com.zstwp.mans.database.entities.Specialization;
 import com.zstwp.mans.database.entities.User;
 import com.zstwp.mans.database.entities.UserRole;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
