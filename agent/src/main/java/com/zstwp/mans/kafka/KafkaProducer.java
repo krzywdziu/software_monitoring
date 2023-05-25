@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaProducer {
 
-    private static final String TOPIC = "mans_topic";
+    protected static final String TOPIC = "mans_topic";
 
 //     <key, value>
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-//    najlepiej message typu AlertDto (json) / AlertDto.toString (string)
     public void writeMessage(String message) {
         this.kafkaTemplate.send(TOPIC, message);
     }

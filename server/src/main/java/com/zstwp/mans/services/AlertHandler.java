@@ -3,6 +3,7 @@ package com.zstwp.mans.services;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.database.entities.User;
 import com.zstwp.mans.dto.AlertDto;
+import com.zstwp.mans.services.mappers.DataMapper;
 import com.zstwp.mans.services.mappers.GetAlertSpecialization;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,28 +20,40 @@ public class AlertHandler {
 
     private final UserService userService;
 
-    public void handleNewAlert(AlertDto alertDto) {
+    private final DataMapper dataMapper;
+
+    private String previousData;
+
+    private boolean emailSent = false;
+
+    public void handleNewAlert(String data) {
+//        check for duplicated alerts
 //        select user -> user with required specialisation + fewest alerts assigned
 //        send email
 //        add new alert (db)
 
-        if(false) {
-//            na jakiej zasadzie rozrozniamy alerty?
+        if(previousData == null && data != null) previousData = data;
+
+        if(!previousData.equals(data)) {
+            AlertDto alertDto = dataMapper.mapData(data);
+
+            User user =  userService.getUserBySpecializationAndFewestAlerts(
+                    GetAlertSpecialization.getRandomSpecialization().toString());
+
+            if(user != null) {
+
+                if(!emailSent) {
+                    emailService.sendEmail(
+                            user.getEmail(),
+                            "New alert!",
+                            "Hello " + user.getFirstName() + ", a new alert has been assigned to you!"
+                    );
+                    emailSent = true; //avoid spamming emails
+                }
+                alertDto.setStatus(AlertStatus.IN_PROGRESS);
+            }
+
+            alertService.addNewAlert(alertDto);
         }
-
-        User user =  userService.getUserBySpecializationAndFewestAlerts(
-                GetAlertSpecialization.getRandomSpecialization().toString());
-
-        if(user != null) {
-            emailService.sendEmail(
-                    user.getEmail(),
-                    "New alert!",
-                    "Hello " + user.getFirstName() + ", a new alert has been assigned to you!"
-            );
-
-            alertDto.setStatus(AlertStatus.IN_PROGRESS);
-        }
-
-        alertService.addNewAlert(alertDto);
     }
 }

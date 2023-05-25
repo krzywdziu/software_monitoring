@@ -3,6 +3,8 @@ package com.zstwp.mans.database.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -35,14 +37,15 @@ public class Specialization {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private UserSpecialization specialization;
+    @Enumerated(EnumType.STRING)
+    private UserSpecialization name;
 
     @JsonIgnore //StackOverflowError
     @ManyToMany(mappedBy = "specializations")
     private Set<User> users = new HashSet<>();
 
     public Specialization(UserSpecialization specialization) {
-        this.specialization = specialization;
+        this.name = specialization;
     }
 
     @Override

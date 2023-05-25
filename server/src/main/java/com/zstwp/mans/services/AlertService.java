@@ -1,16 +1,20 @@
 package com.zstwp.mans.services;
 
+import com.zstwp.mans.config.RandomEnumGenerator;
 import com.zstwp.mans.database.entities.Alert;
 import com.zstwp.mans.database.entities.AlertSeverity;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.database.repositories.AlertRepository;
 import com.zstwp.mans.dto.AlertDto;
 import lombok.RequiredArgsConstructor;
+import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
@@ -42,17 +46,25 @@ public class AlertService {
         return alertRepository.findAllByUserId(id);
     }
 
-    public void addNewAlert(AlertDto alertDto) {
+    public void addNewAlert(AlertDto alert) {
 //        String/AlertDto -> Alert
-        Alert alert = new Alert(alertDto);
+//        Alert alert = new Alert(alertDto);
 
-        alertRepository.save(alert);
+        // check if alert already exists (in the db)
+        if (true) {
+            alertRepository.save(new Alert(alert));
+        }
+
     }
 
 //    TODO:
     public void updateAlertById() {
 //       update status, assign user, ...
 
+    }
+
+    public int countAllAlerts() {
+        return (int) alertRepository.count();
     }
 
 }
