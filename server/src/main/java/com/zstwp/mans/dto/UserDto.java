@@ -10,20 +10,19 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.Set;
 
 public record UserDto(
-        Long id,
         String firstName,
         String lastName,
         String phoneNumber,
         @NotBlank @Email String email,
-        @NotBlank @Enumerated UserRole role,
+        @NotBlank UserRole role,
         Set<Specialization> specializations) {
 
     public UserDto(String firstName, String lastName, String email, UserRole role) {
-        this(null, firstName, lastName, null, email, role, null);
+        this(firstName, lastName, null, email, role, null);
     }
 
     public UserDto(User user) {
-        this(user.getId(), user.getFirstName(), user.getLastName(), user.getPhoneNumber(),
+        this(user.getFirstName(), user.getLastName(), user.getPhoneNumber(),
                 user.getEmail(), user.getRole(), user.getSpecializations());
     }
 }

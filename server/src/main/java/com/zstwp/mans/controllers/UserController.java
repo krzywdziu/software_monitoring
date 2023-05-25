@@ -1,6 +1,7 @@
 package com.zstwp.mans.controllers;
 
 import com.zstwp.mans.database.entities.User;
+import com.zstwp.mans.database.entities.UserSpecialization;
 import com.zstwp.mans.dto.UserDto;
 import com.zstwp.mans.dto.UserRequest;
 import com.zstwp.mans.services.UserService;
@@ -23,7 +24,6 @@ public class UserController {
         List<User> userList = userService.getAllUsers();
         List<UserDto> userDtoList = new ArrayList<>();
 
-        // TODO: mapstruct
         userList.stream().forEach(user -> {
             userDtoList.add(new UserDto(user));
         });
@@ -36,13 +36,14 @@ public class UserController {
     }
 
     @GetMapping
-    public UserDto getUserByEmail(@RequestParam String email) {
-        return new UserDto(userService.getUserByEmail(email));
+    public List<UserDto> getUsersBySpecialization(@RequestParam UserSpecialization specialization) {
+        List<User> userList = userService.getUsersBySpecializationName(specialization.toString());
+        List<UserDto> userDtoList = new ArrayList<>();
+
+        userList.stream().forEach(user -> {
+            userDtoList.add(new UserDto(user));
+        });
+
+        return userDtoList;
     }
-
-//    @GetMapping("/{specialization}")
-//    public List<UserDto> getUsersBySpecializationName(@PathVariable("specialization") String specializationName) {
-//
-//    }
-
 }

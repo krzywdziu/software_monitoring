@@ -10,6 +10,7 @@ public class KafkaConsumer {
     public void getMessage(String message) {
 
 
+
         System.out.println("Received message: " + message);
 
 

@@ -4,6 +4,7 @@ import com.zstwp.mans.database.entities.Alert;
 import com.zstwp.mans.database.entities.AlertSeverity;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.database.repositories.AlertRepository;
+import com.zstwp.mans.dto.AlertDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,21 @@ public class AlertService {
         return alertRepository.findAllByStatus(status);
     }
 
+    public List<Alert> getAlertsByUserId(long id) {
+        return alertRepository.findAllByUserId(id);
+    }
 
+    public void addNewAlert(AlertDto alertDto) {
+//        String/AlertDto -> Alert
+        Alert alert = new Alert(alertDto);
+
+        alertRepository.save(alert);
+    }
+
+//    TODO:
+    public void updateAlertById() {
+//       update status, assign user, ...
+
+    }
 
 }

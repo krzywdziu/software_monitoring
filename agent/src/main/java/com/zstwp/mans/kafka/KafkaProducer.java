@@ -13,6 +13,7 @@ public class KafkaProducer {
 //     <key, value>
     private final KafkaTemplate<String, String> kafkaTemplate;
 
+//    najlepiej message typu AlertDto (json) / AlertDto.toString (string)
     public void writeMessage(String message) {
         this.kafkaTemplate.send(TOPIC, message);
     }
