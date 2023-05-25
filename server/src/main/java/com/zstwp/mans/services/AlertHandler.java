@@ -26,15 +26,26 @@ public class AlertHandler {
 
     private boolean emailSent = false;
 
+    private static final int ALERTS_MAX = 5;
+
+    private int alertCount = 0;
+
     public void handleNewAlert(String data) {
 //        check for duplicated alerts
 //        select user -> user with required specialisation + fewest alerts assigned
 //        send email
 //        add new alert (db)
 
-        if(previousData == null && data != null) previousData = data;
+//        if(previousData == null && data != null) previousData = data;
 
-        if(!previousData.equals(data)) {
+//        if(!previousData.equals(data)) {
+
+
+        if(alertCount <= ALERTS_MAX) {
+            alertCount++;
+            System.out.println(alertCount);
+
+            System.out.println("alert handling");
             AlertDto alertDto = dataMapper.mapData(data);
 
             User user =  userService.getUserBySpecializationAndFewestAlerts(
@@ -42,9 +53,12 @@ public class AlertHandler {
 
             if(user != null) {
 
-                if(!emailSent) {
+//                if(!emailSent) {
+                if(true) {
+                    System.out.println("mailing to marekrospong@gmail.com");
                     emailService.sendEmail(
-                            user.getEmail(),
+//                            user.getEmail(),
+                            "marekrospond@gmail.com",
                             "New alert!",
                             "Hello " + user.getFirstName() + ", a new alert has been assigned to you!"
                     );
