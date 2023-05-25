@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,9 +38,17 @@ public class UserService {
         return user.get();
     }
 
-//    TODO
-    public List<User> getUsersBySpecializationName(String specializationName) {
-        return new ArrayList<User>();
+    public List<User> getUsersBySpecializationName(String specialisation) {
+        return userRepository.findUsersBySpecializationName(specialisation);
+    }
+
+    public User getUserBySpecializationAndFewestAlerts(String specialisation) {
+        Optional<User> user = userRepository.findUserBySpecializationAndWithFewestAlertsAssigned(specialisation);
+
+        if (user.isEmpty()) {
+            throw new UserNotFoundException("User not found with specialization " + specialisation);
+        }
+        return user.get();
     }
 
 //    public void addNewUser(UserModel user) {

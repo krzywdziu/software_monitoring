@@ -6,9 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -21,9 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.GenericGenerator;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -47,14 +43,14 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @Column(unique = true, nullable = false)
+//    @Column(unique = true, nullable = false) // only for test!!!
     private String email;
 
     @Column(nullable = false)
     private String passwordHash;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(cascade = CascadeType.DETACH, orphanRemoval = false)
     @JoinColumn(name = "user_id")
     private List<Alert> alerts;
 
@@ -85,7 +81,4 @@ public class User {
         return getClass().hashCode();
     }
 
-//    public void addNewAlert(Alert alert) {
-//        alerts.add(alert);
-//    }
 }

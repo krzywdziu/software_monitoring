@@ -27,30 +27,25 @@ public class AlertController {
         return alertService.getAlertById(id);
     }
 
-    @GetMapping
-    public List<Alert> getAlertsByStatus(@RequestParam AlertStatus status) {
+    @GetMapping("/severity/{severity}")
+    public List<Alert> getAlertsBySeverity(@PathVariable AlertSeverity severity) {
+        return alertService.getAlertsBySeverity(severity);
+    }
+
+    @GetMapping("/status/{status}")
+    public List<Alert> getAlertsByStatus(@PathVariable AlertStatus status) {
         return alertService.getAlertsByStatus(status);
     }
 
-//    @GetMapping()
-//    public List<Alert> getAlertsByBoxIp(@RequestParam(value = "ip") String boxIp) {
-//        return alertService.getAlertsByBoxIp(boxIp);
-//    }
+    @GetMapping("/ip/{boxIp}")
+    public List<Alert> getAlertsBySeverity(@PathVariable String boxIp) {
+        return alertService.getAlertsByBoxIp(boxIp);
+    }
 
-//    @GetMapping("/severity/{severity}")
-//    public List<Alert> getAlertsBySeverity(@PathVariable AlertSeverity severity) {
-//        return alertService.getAlertsBySeverity(severity);
-//    }
-
-//    @GetMapping("/status/{status}")
-//    public List<Alert> getAlertsByStatus(@PathVariable AlertStatus status) {
-//        return alertService.getAlertsByStatus(status);
-//    }
-
-//    @GetMapping("/ip/{boxIp}")
-//    public List<Alert> getAlertsBySeverity(@PathVariable String boxIp) {
-//        return alertService.getAlertsByBoxIp(boxIp);
-//    }
+    @GetMapping("/user")
+    public List<Alert> getAlertsByUser(@RequestParam long id) {
+        return alertService.getAlertsByUserId(id);
+    }
 
 
 }

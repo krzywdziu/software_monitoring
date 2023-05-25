@@ -9,11 +9,11 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class SpecialisationService {
+public class SpecializationService {
 
     private final SpecializationRepository specializationRepository;
 
-    public List<Specialization> getAllSpecialisations() {
+    public List<Specialization> getAllSpecializations() {
         return specializationRepository.findAll();
     }
 }

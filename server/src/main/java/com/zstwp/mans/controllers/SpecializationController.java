@@ -2,13 +2,12 @@ package com.zstwp.mans.controllers;
 
 
 import com.zstwp.mans.database.entities.Specialization;
-import com.zstwp.mans.services.SpecialisationService;
+import com.zstwp.mans.services.SpecializationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -16,10 +15,10 @@ import java.util.List;
 @RequestMapping("/specialisation")
 public class SpecializationController {
 
-    private final SpecialisationService specialisationService;
+    private final SpecializationService specializationService;
 
     @GetMapping("/all")
-    public List<Specialization> getAllSpecialisations() {
-        return specialisationService.getAllSpecialisations();
+    public List<Specialization> getAllSpecializations() {
+        return specializationService.getAllSpecializations();
     }
 }

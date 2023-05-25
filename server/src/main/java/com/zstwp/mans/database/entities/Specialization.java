@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +25,6 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "specializations")
 public class Specialization {
@@ -36,12 +34,16 @@ public class Specialization {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(nullable = false, unique = true)
+    private UserSpecialization specialization;
 
     @JsonIgnore //StackOverflowError
     @ManyToMany(mappedBy = "specializations")
     private Set<User> users = new HashSet<>();
+
+    public Specialization(UserSpecialization specialization) {
+        this.specialization = specialization;
+    }
 
     @Override
     public boolean equals(Object o) {
