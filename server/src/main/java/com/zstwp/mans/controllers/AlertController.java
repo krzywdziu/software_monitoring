@@ -47,5 +47,8 @@ public class AlertController {
         return alertService.getAlertsByUserId(id);
     }
 
-
+    @GetMapping("/count")
+    public int countAlerts() {
+        return alertService.countAllAlerts();
+    }
 }

@@ -52,7 +52,7 @@ public class InitMockData {
                 User u = User.builder()
                         .firstName("Robert")
                         .lastName("Makłowicz")
-                        .email("rob@domain.com")
+                        .email("example@domain.com")
                         .phoneNumber("123666997")
                         .passwordHash("{noop}pass")
                         .role(UserRole.SERVICEMAN)
@@ -64,7 +64,7 @@ public class InitMockData {
 
             User test = User.builder()
                     .firstName("Test")
-                    .email("existing@email.com")
+                    .email("test@mail") //@@@@
                     .passwordHash("{noop}pass")
                     .role(UserRole.SERVICEMAN)
                     .specializations(new HashSet<>(specializations))
@@ -77,7 +77,6 @@ public class InitMockData {
                     .role(UserRole.ADMIN)
                     .build();
 
-            users.add(test);
             users.add(admin);
 
             for(int i = 0; i < ALERT_COUNT; i++) {
@@ -91,6 +90,9 @@ public class InitMockData {
                         .build();
                 alerts.add(a);
             }
+
+
+            users.add(test);
 
             specializationRepository.saveAll(specializations);
             userRepository.saveAll(users);

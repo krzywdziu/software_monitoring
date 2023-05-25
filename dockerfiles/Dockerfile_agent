@@ -12,4 +12,6 @@ WORKDIR /
 
 COPY --from=builder /workdir/agent/target/agent-*.jar /agent.jar
 
+COPY --from=builder /workdir/agent/src/main/java/com/zstwp/mans/alerts/logs.txt /agent/src/main/java/com/zstwp/mans/alerts/logs.txt
+
 CMD ["java", "-jar", "/agent.jar"]
