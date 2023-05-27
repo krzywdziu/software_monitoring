@@ -7,8 +7,6 @@ import com.zstwp.mans.services.mappers.GetAlertSpecialization;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Service
 public class AlertHandler {

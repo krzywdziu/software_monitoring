@@ -30,12 +30,8 @@ public class UserService {
     }
 
     public User getUserByEmail(String email) {
-        Optional<User> user = userRepository.findUserByEmail(email);
-
-        if (user.isEmpty()) {
-            throw new UserNotFoundException("User not found with email " + email);
-        }
-        return user.get();
+        return userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException(("User not found with email " + email)));
     }
 
     public List<User> getUsersBySpecializationName(String specialisation) {
@@ -43,12 +39,8 @@ public class UserService {
     }
 
     public User getUserBySpecializationAndFewestAlerts(String specialisation) {
-        Optional<User> user = userRepository.findUserBySpecializationAndWithFewestAlertsAssigned(specialisation);
-
-        if (user.isEmpty()) {
-            throw new UserNotFoundException("User not found with specialization " + specialisation);
-        }
-        return user.get();
+        return userRepository.findUserBySpecializationAndWithFewestAlertsAssigned(specialisation)
+                .orElseThrow(() -> new UserNotFoundException("User not found with specialization " + specialisation));
     }
 
 //    public void addNewUser(UserModel user) {
