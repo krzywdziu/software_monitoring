@@ -21,12 +21,8 @@ public class UserService {
     }
 
     public User getUserById(Long id) {
-        Optional<User> user = userRepository.findUserById(id);
-
-        if (user.isEmpty()) {
-            throw new UserNotFoundException("User not found with id " + id);
-        }
-        return user.get();
+        return userRepository.findUserById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id " + id));
     }
 
     public User getUserByEmail(String email) {
