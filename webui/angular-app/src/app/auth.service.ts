@@ -1,42 +1,40 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, catchError, Observable, throwError} from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { LoginService } from "./login.service";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    isAuthenticated_: boolean = false;
     private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
     isLoggedIn$ = this._isLoggedIn$.asObservable();
+    public headers: HttpHeaders = new HttpHeaders();
+    public token: string | null = null;
 
-    constructor(private loginService: LoginService) {
+    constructor(private http: HttpClient) {
         const token = localStorage.getItem('auth_token');
-        console.log(1, token)
         this._isLoggedIn$.next(!!token);
-        this.isAuthenticated_ = this.checkAuthentication();
     }
 
-    login(loginData: any) {
-        return this.loginService.login(loginData).pipe(
+    login(loginData: any): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this.http.post('http://localhost:8080/token', loginData, { headers, observe: 'response', responseType: 'text'}).pipe(
             tap((response: any) => {
-                this._isLoggedIn$.next(true);
-                localStorage.setItem('auth_token', response);
-                console.log(2, response)
-                this.isAuthenticated_ = true;
+                if (response.headers && response.headers.has('Authorization')) {
+                    const token = response.headers.get('Authorization');
+                    if (token) {
+                        this.token = token;
+                        localStorage.setItem('auth_token', token);
+                        this._isLoggedIn$.next(true);
+                    }
+                }
+                console.log('Response token:', response);
+            }),
+            catchError(err => {
+                console.log('Error: ', err);
+                return throwError(err);
             })
         );
     }
-
-    checkAuthentication(): boolean {
-        const token = localStorage.getItem('auth_token');
-        console.log(3, token)
-        return !!token;
-    }
-
-    isAuthenticated(): boolean {
-        return this.isAuthenticated_;
-    }
-
 }
