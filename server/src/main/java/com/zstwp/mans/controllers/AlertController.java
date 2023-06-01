@@ -13,12 +13,12 @@ import java.util.List;
 //@CrossOrigin(origins = "http://localhost:4200")
 //@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false" )
 @RestController
-@RequestMapping("/alert")
+@RequestMapping("/alerts")
 public class AlertController {
 
     private final AlertService alertService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Alert> getAllAlerts() {
         return alertService.getAllAlerts();
     }

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
             Authorization: 'Bearer ' + id_token
         })
 
-        this.http.get<any[]>('http://localhost:8080/alert/all', { headers: headers })
+        this.http.get<any[]>('http://localhost:8080/alerts', { headers: headers })
             .subscribe(
                 (res: any) => {this.alerts = res; },
                 (err: any) => console.log('Error: ', err)

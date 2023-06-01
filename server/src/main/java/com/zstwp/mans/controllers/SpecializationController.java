@@ -12,12 +12,12 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/specialisation")
+@RequestMapping("/specialisations")
 public class SpecializationController {
 
     private final SpecializationService specializationService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Specialization> getAllSpecializations() {
         return specializationService.getAllSpecializations();
     }

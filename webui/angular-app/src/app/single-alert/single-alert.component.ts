@@ -21,7 +21,7 @@ export class SingleAlertComponent implements OnInit{
       const params = this.route.snapshot.params;
       const id = params['id'];
 
-      this.http.get<any>(`http://localhost:8080/alert/${id}`, {headers: headers, params})
+      this.http.get<any>(`http://localhost:8080/alerts/${id}`, {headers: headers, params})
           .subscribe(
               res => this.alert = res,
               err => console.log('Error: ', err)

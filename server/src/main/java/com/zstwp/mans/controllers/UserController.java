@@ -19,12 +19,12 @@ import java.util.List;
 //@CrossOrigin(origins = "http://localhost:4200")
 //@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false" )
 @RestController
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/users")
 public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<UserDto> getAllUsers() {
         List<User> userList = userService.getAllUsers();
         List<UserDto> userDtoList = new ArrayList<>();
@@ -40,7 +40,7 @@ public class UserController {
         return new UserDto(userService.getUserById(id));
     }
 
-    @GetMapping
+    @GetMapping("/specialisation")
     public List<UserDto> getUsersBySpecialization(@RequestParam UserSpecialization specialization) {
         List<User> userList = userService.getUsersBySpecializationName(specialization.toString());
         List<UserDto> userDtoList = new ArrayList<>();

@@ -20,7 +20,7 @@ export class ServicemenDashboardComponent implements OnInit {
         Authorization: 'Bearer ' + id_token
       })
 
-      this.http.get<any[]>('http://localhost:8080/user/all', { headers: headers })
+      this.http.get<any[]>('http://localhost:8080/users', { headers: headers })
           .subscribe(
           res => this.servicemen = res,
           err => console.log('Error: ', err)
