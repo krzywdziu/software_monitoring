@@ -20,27 +20,31 @@
                           <div class="card-body px-5 py-0 text-center">
                             <div class="mt-md-4 pb-4">
                               <h3 class="fw-bold mb-2 pb-4 text-uppercase">Wszystkie alerty</h3>
-                              <table class="table text-white">
-                                <thead>
-                                <tr class="table text-white">
-                                  <th scope="col">Alert</th>
-                                  <th scope="col">Status</th>
-                                  <th scope="col">Data</th>
-                                  <th scope="col">Informacje</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr *ngFor="let alert of alerts;">
-                                  <td>{{ alert.description }}</td>
-                                  <td>{{ alert.status }}</td>
-                                  <td>{{ alert.timestamp }}</td>
-                                  <td>
-                                    <!-- use routerLink for redirect-->
-                                    <a class="btn btn-secondary" routerLink='/alert/{{alert.id}}'>Więcej</a>
-                                  </td>
-                                </tr>
-                                </tbody>
-                              </table>
+                              <div class="table-responsive">
+                                <table class="mt-md-4 table text-white">
+                                  <thead>
+                                  <tr class="table text-white">
+                                    <th scope="col">Alert</th>
+                                    <th scope="col">Priorytet</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Informacje</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr *ngFor="let alert of alerts;" [ngClass]="getRowColor(alert.severity)">
+                                    <td>{{ alert.description }}</td>
+                                    <td>{{ alert.severity }}</td>
+                                    <td>{{ alert.status }}</td>
+                                    <td>{{ alert.timestamp }}</td>
+                                    <td>
+                                      <!-- use routerLink for redirect-->
+                                      <a class="btn btn-secondary" routerLink='/alert/{{alert.id}}'>Więcej</a>
+                                    </td>
+                                  </tr>
+                                  </tbody>
+                                </table>
+                              </div>
                             </div>
                           </div>
                       </div>
@@ -56,26 +60,29 @@
                         <div class="card-body px-5 py-0 text-center">
                           <div class="mt-md-4 pb-4">
                             <h3 class="fw-bold mb-2 pb-4 text-uppercase">Przypisane do mnie</h3>
-                            <table class="table text-white">
-                              <thead>
-                              <tr class="table text-white">
-                                <th scope="col">Alert</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">Informacje</th>
-                              </tr>
-                              </thead>
-                              <tbody>
-                              <tr *ngFor="let alert of alerts;">
-                                <td>{{ alert.description }}</td>
-                                <td>{{ alert.status }}</td>
-                                <td>{{ alert.timestamp }}</td>
-                                <td>
-                                  <a class="btn btn-secondary" routerLink='/alert/{{alert.id}}'>Więcej</a>
-                                </td>
-                              </tr>
-                              </tbody>
-                            </table>
+                            <div class="table-responsive">
+                              <table class="mt-md-4 table text-white">
+                                <thead>
+                                <tr class="table text-white">
+                                  <th scope="col">Alert</th>
+                                  <th scope="col">Status</th>
+                                  <th scope="col">Data</th>
+                                  <th scope="col">Informacje</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let alert of alerts;" [ngClass]="getRowColor(alert.severity)">
+                                  <td>{{ alert.description }}</td>
+                                  <td>{{ alert.severity }}</td>
+                                  <td>{{ alert.status }}</td>
+                                  <td>{{ alert.timestamp }}</td>
+                                  <td>
+                                    <a class="btn btn-secondary" routerLink='/alert/{{alert.id}}'>Więcej</a>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </div>
                           </div>
                         </div>
                       </div>

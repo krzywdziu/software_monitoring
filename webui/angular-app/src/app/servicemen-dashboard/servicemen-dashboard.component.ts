@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-servicemen-dashboard',
@@ -11,15 +9,21 @@ import { ActivatedRoute } from '@angular/router';
 export class ServicemenDashboardComponent implements OnInit {
   public servicemen: any[] = [];
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient) {}
 
   // todo: zmienic url gdy bedzie endpoint
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.http.get<any[]>('http://localhost:8080/user/all').subscribe(
-        res => this.servicemen = res,
-        err => console.log('Error: ', err)
+      const id_token = localStorage.getItem('id_token')
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + id_token
+      })
+
+      this.http.get<any[]>('http://localhost:8080/user/all', { headers: headers })
+          .subscribe(
+          res => this.servicemen = res,
+          err => console.log('Error: ', err)
       )
-    })
   }
 }

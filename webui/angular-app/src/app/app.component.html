@@ -1,11 +1,10 @@
-<app-app-navbar></app-app-navbar>
+<app-app-navbar *ngIf="authService.isLoggedIn$ | async"></app-app-navbar>
 <div class="wrapper">
   <div class="content py-5">
     <div class="container">
       <div class="justify-content-center">
         <div class="jumbotron">
           <!-- todo: first serve app-login, then app-home with app-navbar -->
-          <!-- <app-login></app-login> -->
           <!-- todo: usunac navbar przy logowaniu a potem go dodac -->
           <router-outlet></router-outlet>
         </div>
