@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${id_token}`
+            Authorization: 'Bearer ' + id_token
         })
 
         console.log('Authorization header: ', headers.get('Authorization'))

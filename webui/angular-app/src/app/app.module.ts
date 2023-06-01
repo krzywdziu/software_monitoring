@@ -11,7 +11,6 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { SingleAlertComponent } from './single-alert/single-alert.component';
 import { ServicemenDashboardComponent } from './servicemen-dashboard/servicemen-dashboard.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {AuthInterceptor} from "./auth-interceptor.interceptor";
 import {AuthGuard} from "./auth-guard.guard";
 
 @NgModule({

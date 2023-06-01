@@ -5,7 +5,6 @@ import {SingleAlertComponent} from "./single-alert/single-alert.component";
 import {ServicemenDashboardComponent} from "./servicemen-dashboard/servicemen-dashboard.component";
 import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./auth-guard.guard";
-
 // todo: jak będzie podstrona dla pracownika to tu dodać
 // todo: zmienic endpoint dla dashboard
 const routes: Routes = [
