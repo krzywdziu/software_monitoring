@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,8 @@ import { SingleAlertComponent } from './single-alert/single-alert.component';
 import { ServicemenDashboardComponent } from './servicemen-dashboard/servicemen-dashboard.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "./auth-guard.guard";
+import { LogoutService } from './logout.service';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import {AuthGuard} from "./auth-guard.guard";
     CommonModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, LogoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

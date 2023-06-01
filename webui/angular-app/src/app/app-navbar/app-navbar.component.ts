@@ -12,6 +12,8 @@ export class AppNavbarComponent {
   }
   logut() {
     this.authService.logout()
+    const token = localStorage.getItem('id_token');
+    this.authService._isLoggedIn$.next(!!token);
   }
 
 }

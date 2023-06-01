@@ -7,10 +7,9 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
     providedIn: 'root'
 })
 export class AuthService {
-    private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
+    _isLoggedIn$ = new BehaviorSubject<boolean>(false);
     isLoggedIn$ = this._isLoggedIn$.asObservable();
-    public headers: HttpHeaders = new HttpHeaders();
-    public token: string | null = null;
+    token: string | null = null;
 
     constructor(private http: HttpClient) {
         const token = localStorage.getItem('id_token');
@@ -20,7 +19,7 @@ export class AuthService {
     login(loginData: any): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this.http.post('http://localhost:8080/token', loginData,
-            { headers, observe: 'response', responseType: 'text'})
+            { headers: headers, observe: 'response', responseType: 'text'})
             .pipe(
             tap((response: any) => {
                 const token = response.body
@@ -34,7 +33,6 @@ export class AuthService {
             })
         );
     }
-
 
     logout() {
         localStorage.setItem('id_token', '')

@@ -5,16 +5,16 @@ import {SingleAlertComponent} from "./single-alert/single-alert.component";
 import {ServicemenDashboardComponent} from "./servicemen-dashboard/servicemen-dashboard.component";
 import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./auth-guard.guard";
+
 // todo: jak będzie podstrona dla pracownika to tu dodać
 // todo: zmienic endpoint dla dashboard
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  {path: 'logout', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'logout', component: LoginComponent },
   { path: 'alert/all', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'alert/:id', component: SingleAlertComponent },
-  { path: 'user/all', component: ServicemenDashboardComponent},
-  { path: '**', component: HomeComponent}
+  { path: 'alert/:id', component: SingleAlertComponent, canActivate: [AuthGuard] },
+  { path: 'user/all', component: ServicemenDashboardComponent, canActivate: [AuthGuard] },
+  { path: '**', component: HomeComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
