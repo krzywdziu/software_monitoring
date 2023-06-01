@@ -17,7 +17,7 @@
               <!-- todo: verify if user is admin -->
               <a class="dropdown-item" href="/user/all">Serwisanci</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/logout">Wyloguj</a>
+              <a class="dropdown-item" (click)="logut()" id="logout" routerLink="/logout">Wyloguj</a>
             </div>
           </li>
         </ul>

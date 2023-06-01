@@ -13,7 +13,7 @@ export class AuthService {
     public token: string | null = null;
 
     constructor(private http: HttpClient) {
-        const token = localStorage.getItem('auth_token');
+        const token = localStorage.getItem('id_token');
         this._isLoggedIn$.next(!!token);
     }
 
@@ -23,20 +23,21 @@ export class AuthService {
             { headers, observe: 'response', responseType: 'text'})
             .pipe(
             tap((response: any) => {
-                if (response.headers && response.headers.has('Authorization')) {
-                    const token = response.headers.get('Authorization');
-                    if (token) {
-                        this.token = token;
-                        localStorage.setItem('auth_token', token);
-                        this._isLoggedIn$.next(true);
-                    }
-                }
-                console.log('Response token:', response);
+                const token = response.body
+                this.token = token;
+                localStorage.setItem('id_token', token);
+                this._isLoggedIn$.next(true);
             }),
             catchError(err => {
                 console.log('Error: ', err);
                 return throwError(err);
             })
         );
+    }
+
+
+    logout() {
+        localStorage.setItem('id_token', '')
+        this.token = localStorage.getItem('id_token')
     }
 }
