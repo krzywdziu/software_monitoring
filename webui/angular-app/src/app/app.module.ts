@@ -14,7 +14,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "./auth-guard.guard";
 import { LogoutService } from './logout.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -24,8 +24,10 @@
                     <p class="fw-bold mb-2 text-uppercase">{{ alert.description }}</p>
 
                     <hr>
-                    <p class="text-white-50">PRIORYTET</p>
-                    <p class="fw-bold text-uppercase">{{ alert.severity }}</p>
+                    <div [ngClass]="getRowColor(alert.severity)">
+                      <p class="text-50">PRIORYTET</p>
+                      <p class="fw-bold text-uppercase">{{ alert.severity }}</p>
+                    </div>
 
                     <hr>
                     <p class="text-white-50">DATA POWSTANIA AWARII</p>
