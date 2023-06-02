@@ -5,7 +5,8 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '
 export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (localStorage.getItem('id_token') != '') {
+    if (localStorage.getItem('id_token') != '' && localStorage.getItem('id_token') != null
+        && localStorage.getItem('id_token') != 'undefined') {
       return true;
     } else {
       this.router.navigate(['/login']);

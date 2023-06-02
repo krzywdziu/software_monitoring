@@ -13,6 +13,7 @@ import { ServicemenDashboardComponent } from './servicemen-dashboard/servicemen-
 import {ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "./auth-guard.guard";
 import { LogoutService } from './logout.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LogoutService } from './logout.service';
     LoginComponent,
     AppNavbarComponent,
     SingleAlertComponent,
-    ServicemenDashboardComponent
+    ServicemenDashboardComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
