@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -28,7 +27,7 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findUserByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException(("User not found with email " + email)));
+                .orElseThrow(() -> new UserNotFoundException("User not found with email " + email));
     }
 
     public List<User> getUsersBySpecializationName(String specialisation) {

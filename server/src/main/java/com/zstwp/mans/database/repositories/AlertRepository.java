@@ -26,11 +26,11 @@ public interface AlertRepository extends JpaRepository<Alert, Long> {
 
     @Modifying
     @Transactional
-    @Query("update Alert set user = :userId where id = :alertId")
-    void assignAlertToUser(long alertId, long userId);
+    @Query("update Alert set user = :user where id = :alertId")
+    Integer assignAlertToUser(long alertId, User user);
 
     @Modifying
     @Transactional
     @Query("update Alert set status = :status where id = :id")
-    void updateAlertStatus(long id, AlertStatus status);
+    Integer updateAlertStatus(long id, AlertStatus status);
 }

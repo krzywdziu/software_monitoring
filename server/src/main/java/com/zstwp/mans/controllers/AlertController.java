@@ -4,6 +4,7 @@ import com.zstwp.mans.database.entities.Alert;
 import com.zstwp.mans.database.entities.AlertSeverity;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.services.AlertService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,12 +33,12 @@ public class AlertController {
     }
 
     @GetMapping("/severity/{severity}")
-    public List<Alert> getAlertsBySeverity(@PathVariable AlertSeverity severity) {
+    public List<Alert> getAlertsBySeverity(@Valid @PathVariable AlertSeverity severity) {
         return alertService.getAlertsBySeverity(severity);
     }
 
     @GetMapping("/status/{status}")
-    public List<Alert> getAlertsByStatus(@PathVariable AlertStatus status) {
+    public List<Alert> getAlertsByStatus(@Valid @PathVariable AlertStatus status) {
         return alertService.getAlertsByStatus(status);
     }
 
@@ -56,29 +57,13 @@ public class AlertController {
         return alertService.countAllAlerts();
     }
 
-    @PutMapping("/{id}")
-    public void assignAlert() {
-
-        long alertId = 1L;
-        long userId = 1L;
-
-        alertService.assignAlertToUser(alertId, userId);
-        return;
+    @PutMapping("{id}/update")
+    public String updateAlert(@PathVariable long id, @RequestParam AlertStatus status) {
+        return alertService.updateAlertStatus(id, status) + " Alert(s) updated";
     }
 
-    @PutMapping("/{id}")
-    public void updateAlertStatus() {
-        long id = 1L;
-        AlertStatus status = AlertStatus.RESOLVED;
-
-        alertService.updateAlertStatus(id, status);
+    @PutMapping("{id}/assign")
+    public String assignAlert(@PathVariable(name = "id") long alertId, @RequestParam long userId) {
+        return alertService.assignAlertToUser(alertId, userId) + " Alert(s) assigned";
     }
-
-//    @PutMapping(path = "{studentId}")
-//    public void updateStudent(
-//            @PathVariable("studentId") Integer studentId,
-//            @RequestParam(required = false) String name,
-//            @RequestParam(required = false) String email) {
-//        studentService.updateStudent(studentId, name, email);
-//    }
 }

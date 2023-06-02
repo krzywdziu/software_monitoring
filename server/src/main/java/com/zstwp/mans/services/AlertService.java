@@ -15,6 +15,7 @@ import java.util.List;
 public class AlertService {
 
     private final AlertRepository alertRepository;
+    private final UserService userService;
 
     public List<Alert> getAllAlerts() {
         return alertRepository.findAll();
@@ -40,12 +41,12 @@ public class AlertService {
         return alertRepository.findAllByUserId(id);
     }
 
-    public void assignAlertToUser(long alertId, long userId) {
-        alertRepository.assignAlertToUser(alertId, userId);
+    public Integer updateAlertStatus(long id, AlertStatus status) {
+        return alertRepository.updateAlertStatus(id, status);
     }
 
-    public void updateAlertStatus(long id, AlertStatus status) {
-        alertRepository.updateAlertStatus(id, status);
+    public Integer assignAlertToUser(long alertId, long userId) {
+        return alertRepository.assignAlertToUser(alertId, userService.getUserById(userId));
     }
 
     public void addNewAlert(AlertDto alert) {
@@ -56,12 +57,6 @@ public class AlertService {
         if (true) {
             alertRepository.save(new Alert(alert));
         }
-
-    }
-
-//    TODO:
-    public void updateAlertById() {
-//       update status, assign user, ...
 
     }
 

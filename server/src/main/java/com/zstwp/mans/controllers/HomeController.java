@@ -11,14 +11,14 @@ import java.security.Principal;
 @RequestMapping("/")
 public class HomeController {
 
-    @GetMapping
+    @GetMapping("/me")
     public String home(Principal principal) {
         return "hello " + principal.getName() + "!";
     }
 
     @PreAuthorize("hasAuthority('SCOPE_read')")
-    @GetMapping("/secure")
+    @GetMapping("/hello")
     public String secure() {
-        return "This is secured!";
+        return "Hello! Server is running";
     }
 }
