@@ -1,6 +1,6 @@
 package com.zstwp.mans.services.mappers;
 
-import com.zstwp.mans.config.RandomEnumGenerator;
+import com.zstwp.mans.utils.RandomEnumGenerator;
 import com.zstwp.mans.database.entities.AlertSeverity;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.dto.AlertDto;
