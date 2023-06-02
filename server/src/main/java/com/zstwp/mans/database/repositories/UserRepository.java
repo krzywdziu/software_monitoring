@@ -3,6 +3,7 @@ package com.zstwp.mans.database.repositories;
 import com.zstwp.mans.database.entities.Alert;
 import com.zstwp.mans.database.entities.Specialization;
 import com.zstwp.mans.database.entities.User;
+import com.zstwp.mans.database.entities.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,8 @@ import java.util.Set;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+
+    List<User> findAllByRole(UserRole role);
 
     Optional<User> findUserById(Long id);
 

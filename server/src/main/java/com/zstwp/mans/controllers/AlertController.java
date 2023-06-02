@@ -5,13 +5,16 @@ import com.zstwp.mans.database.entities.AlertSeverity;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.services.AlertService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-//@CrossOrigin(origins = "http://localhost:4200")
-//@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false" )
 @RestController
 @RequestMapping("/alerts")
 public class AlertController {
@@ -52,4 +55,30 @@ public class AlertController {
     public int countAlerts() {
         return alertService.countAllAlerts();
     }
+
+    @PutMapping("/{id}")
+    public void assignAlert() {
+
+        long alertId = 1L;
+        long userId = 1L;
+
+        alertService.assignAlertToUser(alertId, userId);
+        return;
+    }
+
+    @PutMapping("/{id}")
+    public void updateAlertStatus() {
+        long id = 1L;
+        AlertStatus status = AlertStatus.RESOLVED;
+
+        alertService.updateAlertStatus(id, status);
+    }
+
+//    @PutMapping(path = "{studentId}")
+//    public void updateStudent(
+//            @PathVariable("studentId") Integer studentId,
+//            @RequestParam(required = false) String name,
+//            @RequestParam(required = false) String email) {
+//        studentService.updateStudent(studentId, name, email);
+//    }
 }

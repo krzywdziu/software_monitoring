@@ -1,6 +1,7 @@
 package com.zstwp.mans.services;
 
 import com.zstwp.mans.database.entities.User;
+import com.zstwp.mans.database.entities.UserRole;
 import com.zstwp.mans.database.repositories.UserRepository;
 import com.zstwp.mans.exceptions.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +17,8 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<User> getAllServicemen() {
+        return userRepository.findAllByRole(UserRole.SERVICEMAN);
     }
 
     public User getUserById(Long id) {

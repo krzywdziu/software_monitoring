@@ -40,6 +40,14 @@ public class AlertService {
         return alertRepository.findAllByUserId(id);
     }
 
+    public void assignAlertToUser(long alertId, long userId) {
+        alertRepository.assignAlertToUser(alertId, userId);
+    }
+
+    public void updateAlertStatus(long id, AlertStatus status) {
+        alertRepository.updateAlertStatus(id, status);
+    }
+
     public void addNewAlert(AlertDto alert) {
 //        String/AlertDto -> Alert
 //        Alert alert = new Alert(alertDto);
