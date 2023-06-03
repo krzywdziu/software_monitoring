@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AlertDto {
+    long id;
     String description;
     AlertStatus status;
     String boxIp;
@@ -24,6 +25,7 @@ public class AlertDto {
     UserDto userDto;
 
     public AlertDto(Alert alert) {
+        this.id = alert.getId();
         this.description = alert.getDescription();
         this.status = alert.getStatus();
         this.boxIp = alert.getBoxIp();
