@@ -11,6 +11,7 @@ import java.util.List;
 public interface AlertMapper {
 
     @Mapping(target = "userDto", source = "user")
+    @Mapping(source = "id", target = "id")
     AlertDto toAlertDto(Alert alert);
 
 //    @Mapping(target = "userDto", source = "user")
