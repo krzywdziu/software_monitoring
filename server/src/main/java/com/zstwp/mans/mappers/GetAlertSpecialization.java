@@ -1,4 +1,4 @@
-package com.zstwp.mans.services.mappers;
+package com.zstwp.mans.mappers;
 
 
 import com.zstwp.mans.database.entities.UserSpecialization;

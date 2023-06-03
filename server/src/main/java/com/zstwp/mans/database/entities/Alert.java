@@ -25,7 +25,6 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Builder
 @Entity
-//@Table(name = "alerts")
 @Table(name = "alerts", indexes = @Index(columnList = "user_id"))
 public class Alert {
     @Id
@@ -43,9 +42,6 @@ public class Alert {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-//    @Column(length = 1024)
-//    private String url;
 
     @CreationTimestamp
     private LocalDateTime timestamp;

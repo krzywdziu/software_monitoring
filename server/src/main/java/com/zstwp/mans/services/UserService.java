@@ -1,14 +1,14 @@
 package com.zstwp.mans.services;
 
 import com.zstwp.mans.database.entities.User;
+import com.zstwp.mans.database.entities.UserRole;
 import com.zstwp.mans.database.repositories.UserRepository;
-import com.zstwp.mans.exceptions.UserNotFoundException;
+import com.zstwp.mans.services.exceptions.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -16,8 +16,8 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<User> getAllServicemen() {
+        return userRepository.findAllByRole(UserRole.SERVICEMAN);
     }
 
     public User getUserById(Long id) {
@@ -27,7 +27,7 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findUserByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException(("User not found with email " + email)));
+                .orElseThrow(() -> new UserNotFoundException("User not found with email " + email));
     }
 
     public List<User> getUsersBySpecializationName(String specialisation) {

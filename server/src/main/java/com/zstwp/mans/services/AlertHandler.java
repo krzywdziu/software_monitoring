@@ -3,8 +3,7 @@ package com.zstwp.mans.services;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.database.entities.User;
 import com.zstwp.mans.dto.AlertDto;
-import com.zstwp.mans.services.mappers.DataMapper;
-import com.zstwp.mans.services.mappers.GetAlertSpecialization;
+import com.zstwp.mans.mappers.GetAlertSpecialization;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,6 @@ public class AlertHandler {
 
     private final UserService userService;
 
-    private final DataMapper dataMapper;
-
     private String previousData;
 
     private boolean emailSent = false;
@@ -28,7 +25,7 @@ public class AlertHandler {
 
     private int alertCount = 0;
 
-    public void handleNewAlert(String data) {
+    public void handleNewAlert(AlertDto alertDto) {
 //        check for duplicated alerts
 //        select user -> user with required specialisation + fewest alerts assigned
 //        send email
@@ -44,7 +41,7 @@ public class AlertHandler {
             System.out.println(alertCount);
 
             System.out.println("alert handling");
-            AlertDto alertDto = dataMapper.mapData(data);
+//            AlertDto alertDto = dataMapper.mapData(data);
 
             User user =  userService.getUserBySpecializationAndFewestAlerts(
                     GetAlertSpecialization.getRandomSpecialization().toString());

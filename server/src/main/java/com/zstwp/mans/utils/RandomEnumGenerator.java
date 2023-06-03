@@ -1,4 +1,4 @@
-package com.zstwp.mans.config;
+package com.zstwp.mans.utils;
 
 import java.util.Random;
 
