@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SingleAlertComponent implements OnInit{
   public alert: any = {};
-
+  statusEnum: string[] = ['in progress', 'resolved', 'wont fix'];
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit(): void {

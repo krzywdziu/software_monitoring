@@ -29,28 +29,18 @@
                           <div class="px-2">
                             <table class="table my-0 w-100">
                               <tbody>
-                              <!-- <tr>
-                                  <td style="width: 50%;">
-                                      <b><small>Status ostatniego alertu</small></b>
-                                  </td>
-                                  <td style="width: 50%;">
-                                      <small>W trakcie naprawy</small>
-                                  </td>
-                              </tr> -->
                               <tr>
                                 <td style="width: 50%;">
                                   <b><small>Liczba alertów</small></b>
                                 </td>
                                 <td style="width: 50%;">
-                                  <!-- todo: rozmiar listy alertów przypisanych do danego serwisanta -->
-                                  <small>100</small>
+                                  <small>{{serviceman.alertsCount}}</small>
                                 </td>
                               </tr>
                               </tbody>
                             </table>
                           </div>
-                          <!-- todo: new template and url -->
-                          <a href="#" class="btn btn-dark btn-block mt-2">Historia alertów</a>
+                          <a class="btn btn-dark btn-block mt-2" [routerLink]="'/alerts/user'" [queryParams]="{ id: serviceman.id }">Historia alertów</a>
                         </td>
                         <td style="width: 70%;">
                           <table class="table table-borderless my-0 w-100">
@@ -79,6 +69,14 @@
                               </td>
                               <td>{{serviceman.phoneNumber}}</td>
                             </tr>
+                            <tr>
+                              <td class="float-start">
+                                <b>Specjalizacje</b>
+                              </td>
+                              <td>
+                                {{ getSpecializations(serviceman) }}
+                              </td>
+                            </tr>
                             </tbody>
                           </table>
                         </td>
@@ -89,7 +87,6 @@
               </div>
             </div>
           </div>
-          <!-- <p class="card-text pt-2">tekst dolny</p> -->
         </div>
       </div>
     </div>

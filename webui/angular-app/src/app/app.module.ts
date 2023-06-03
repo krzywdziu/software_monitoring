@@ -14,6 +14,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "./auth-guard.guard";
 import { LogoutService } from './logout.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { UserAlertsComponent } from './about-me/user-alerts/user-alerts.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     AppNavbarComponent,
     SingleAlertComponent,
     ServicemenDashboardComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    AboutMeComponent,
+    UserAlertsComponent
   ],
   imports: [
     BrowserModule,

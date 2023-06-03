@@ -33,13 +33,28 @@
                     <p class="text-white-50">DATA POWSTANIA AWARII</p>
                     <p class="fw-bold text-uppercase">{{ alert.timestamp }}</p>
 
-                    <!-- todo: asignee -->
-
+                    <p *ngIf="!alert.user.id; else asignee"></p>
+                    <ng-template #asignee>
+                      <hr>
+                      <p class="text-white-50">PRZYPISANY DO</p>
+                      <p class="fw-bold text-uppercase">{{ alert.user.firstName}} {{alert.user.lastName}}</p>
+                      <hr style="border-top: 5px solid;">
+                    </ng-template>
                   </div>
                 </div>
-                <div class="form-outline form-white mb-4">
-                  <form>
-                    <button class="btn btn-dark btn-lg" style="background-color: white; color: black" type="submit">Przypisz do mnie</button>
+                <div class="form-outline form-white mb-4 mt-0">
+                  <form style="display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      align-items: center;">
+                    <button *ngIf="!alert.user.id; else changeStatus" class="btn btn-dark btn-lg" style="background-color: white; color: black" type="submit">Przypisz do mnie</button>
+                    <ng-template #changeStatus>
+                      <p class="text-white">ZMIEŃ STATUS</p>
+                      <select class="my-3 px-4 py-2" style="background-color: white; color: black">
+                        <option *ngFor="let item of statusEnum" [value]="item" [selected]="item === alert.status">{{ item }}</option>
+                      </select>
+                      <button class="btn btn-dark btn-lg my-3" style="background-color: white; color: black" type="submit">Potwierdź</button>
+                    </ng-template>
                   </form>
                 </div>
               </div>
