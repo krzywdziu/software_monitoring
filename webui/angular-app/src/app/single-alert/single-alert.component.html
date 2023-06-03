@@ -33,11 +33,11 @@
                     <p class="text-white-50">DATA POWSTANIA AWARII</p>
                     <p class="fw-bold text-uppercase">{{ alert.timestamp }}</p>
 
-                    <p *ngIf="!alert.user.id; else asignee"></p>
+                    <p *ngIf="!alert.userDto?.id; else asignee"></p>
                     <ng-template #asignee>
                       <hr>
                       <p class="text-white-50">PRZYPISANY DO</p>
-                      <p class="fw-bold text-uppercase">{{ alert.user.firstName}} {{alert.user.lastName}}</p>
+                      <p class="fw-bold text-uppercase">{{ alert.userDto.firstName}} {{alert.userDto.lastName}}</p>
                       <hr style="border-top: 5px solid;">
                     </ng-template>
                   </div>
@@ -47,13 +47,14 @@
                       flex-direction: column;
                       justify-content: center;
                       align-items: center;">
-                    <button *ngIf="!alert.user.id; else changeStatus" class="btn btn-dark btn-lg" style="background-color: white; color: black" type="submit">Przypisz do mnie</button>
+                    <button *ngIf="alert.userDto?.id; else changeStatus" class="btn btn-dark btn-lg"
+                            style="background-color: white; color: black" type="submit" (click)="assignToMe()">Przypisz do mnie</button>
                     <ng-template #changeStatus>
                       <p class="text-white">ZMIEŃ STATUS</p>
-                      <select class="my-3 px-4 py-2" style="background-color: white; color: black">
+                      <select class="my-3 px-4 py-2" style="background-color: white; color: black" [(ngModel)]="selectedStatus" name="selectedStatus">
                         <option *ngFor="let item of statusEnum" [value]="item" [selected]="item === alert.status">{{ item }}</option>
                       </select>
-                      <button class="btn btn-dark btn-lg my-3" style="background-color: white; color: black" type="submit">Potwierdź</button>
+                      <button class="btn btn-dark btn-lg my-3" style="background-color: white; color: black" type="submit" (click)="changeAlertStatus()">Potwierdź</button>
                     </ng-template>
                   </form>
                 </div>

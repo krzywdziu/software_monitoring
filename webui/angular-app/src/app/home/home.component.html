@@ -28,7 +28,7 @@
                                     <th scope="col">Priorytet</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Data</th>
-                                    <th scope="col">Przypisany</th>
+                                    <th scope="col">Status przypisania</th>
                                     <th scope="col">Informacje</th>
                                   </tr>
                                   </thead>
@@ -39,8 +39,8 @@
                                     <td>{{ alert.status }}</td>
                                     <td>{{ alert.timestamp }}</td>
                                     <td>
-                                      <span *ngIf="alert.user?.id; else noUserId">TAK</span>
-                                      <ng-template #noUserId>NIE</ng-template>
+                                      <span *ngIf="alert.userDto.id; else noUserId">Przypisany</span>
+                                      <ng-template #noUserId>Nieprzypisany</ng-template>
                                     </td>
                                     <td>
                                       <a class="btn btn-secondary" [routerLink]="'/alerts/' + alert.id">Więcej</a>
