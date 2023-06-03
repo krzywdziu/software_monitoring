@@ -3,7 +3,7 @@ package com.zstwp.mans.services;
 import com.zstwp.mans.database.entities.User;
 import com.zstwp.mans.database.entities.UserRole;
 import com.zstwp.mans.database.repositories.UserRepository;
-import com.zstwp.mans.exceptions.UserNotFoundException;
+import com.zstwp.mans.services.exceptions.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

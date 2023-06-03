@@ -3,7 +3,7 @@ package com.zstwp.mans.services;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.database.entities.User;
 import com.zstwp.mans.dto.AlertDto;
-import com.zstwp.mans.services.mappers.GetAlertSpecialization;
+import com.zstwp.mans.mappers.GetAlertSpecialization;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
