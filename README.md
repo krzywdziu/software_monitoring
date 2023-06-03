@@ -16,7 +16,7 @@ Project is a collection of independent services that together form a whole syste
 * run frontend typing `ng serve` from /webui/angular-app
 
 ## Server's api documentation
-* http://localhost:8080/swagger-ui.html
+* http://localhost:8080/swagger-ui/index.html
 
 
 ## Run using docker compose
