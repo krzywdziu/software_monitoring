@@ -47,7 +47,7 @@
                       flex-direction: column;
                       justify-content: center;
                       align-items: center;">
-                    <button *ngIf="alert.userDto?.id; else changeStatus" class="btn btn-dark btn-lg"
+                    <button *ngIf="!alert.userDto?.id; else changeStatus" class="btn btn-dark btn-lg"
                             style="background-color: white; color: black" type="submit" (click)="assignToMe()">Przypisz do mnie</button>
                     <ng-template #changeStatus>
                       <p class="text-white">ZMIEŃ STATUS</p>
