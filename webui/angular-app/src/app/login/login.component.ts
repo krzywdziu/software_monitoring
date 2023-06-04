@@ -10,7 +10,7 @@ import {AuthService} from "../auth.service";
 })
 export class LoginComponent {
     public form = new FormGroup({
-        username: new FormControl('admin', Validators.required),
+        email: new FormControl('admin@example.com', Validators.required),
         password: new FormControl('admin', Validators.required)
     });
 
@@ -23,7 +23,7 @@ export class LoginComponent {
         }
 
         const loginData = {
-            username: this.form.controls.username.value,
+            email: this.form.controls.email.value,
             password: this.form.controls.password.value
         };
 
