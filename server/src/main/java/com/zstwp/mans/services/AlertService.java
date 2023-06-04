@@ -5,6 +5,8 @@ import com.zstwp.mans.database.entities.AlertSeverity;
 import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.database.repositories.AlertRepository;
 import com.zstwp.mans.dto.AlertDto;
+import com.zstwp.mans.services.exceptions.AlertNotFoundException;
+import com.zstwp.mans.services.exceptions.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,8 @@ public class AlertService {
     }
 
     public Alert getAlertById(long id) {
-        return alertRepository.findAlertById(id);
+        return alertRepository.findAlertById(id)
+                .orElseThrow(() -> new AlertNotFoundException("Alert not found with id " + id));
     }
 
     public List<Alert> getAlertsBySeverity(AlertSeverity severity) {
