@@ -64,7 +64,7 @@
                               <td>{{serviceman.email}}</td>
                             </tr>
                             <tr>
-                              <td class="float-start">
+                              <td class="float-start" style="white-space: nowrap;">
                                 <b>Numer telefonu</b>
                               </td>
                               <td>{{serviceman.phoneNumber}}</td>
@@ -83,6 +83,8 @@
                       </tr>
                     </table>
                   </div>
+                  <!-- todo: if Admin -> delete -->
+                  <a class="btn btn-dark btn-block my-5" *ngIf="serviceman.firstName == 'admin'" [routerLink]="'/delete_user'">Usuń serwisanta</a>
                 </div>
               </div>
             </div>

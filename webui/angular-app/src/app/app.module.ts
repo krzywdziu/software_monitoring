@@ -16,6 +16,7 @@ import { LogoutService } from './logout.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { UserAlertsComponent } from './user-alerts/user-alerts.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UserAlertsComponent } from './user-alerts/user-alerts.component';
     ServicemenDashboardComponent,
     ErrorPageComponent,
     AboutMeComponent,
-    UserAlertsComponent
+    UserAlertsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

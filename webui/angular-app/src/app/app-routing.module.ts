@@ -8,6 +8,7 @@ import {AuthGuard} from "./auth-guard.guard";
 import {ErrorPageComponent} from "./error-page/error-page.component";
 import {AboutMeComponent} from "./about-me/about-me.component";
 import {UserAlertsComponent} from "./user-alerts/user-alerts.component";
+import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'alerts', pathMatch: 'full' },
       { path: 'alerts', component: HomeComponent }
     ]},
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'error', component: ErrorPageComponent },
   { path: '**', redirectTo: '/error' }
