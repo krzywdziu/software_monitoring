@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-outline form-white mb-4 mt-0 mx-5">
                   <form style="display: flex; flex-direction: column;">
-                    <div  *ngIf="alert.userDto.id === id_user">
+                    <div *ngIf="alert.userDto?.id !== id_user">
                       <button class="btn btn-dark btn-lg" style="background-color: white; color: black" type="submit" (click)="assignToMe()">Przypisz do mnie</button>
                       <hr>
                     </div>
