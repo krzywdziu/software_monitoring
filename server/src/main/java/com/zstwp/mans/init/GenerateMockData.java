@@ -36,6 +36,17 @@ public class GenerateMockData {
 
     private static final Random PRNG = new Random();
 
+    private Set<Specialization> getNRandSpecializations(List<Specialization> specializations) {
+        int size = PRNG.nextInt(1,5);
+        Set<Specialization> mySet = new HashSet<>();
+
+        for (int i = 0; i < size; i++) {
+            mySet.add(specializations.get(PRNG.nextInt(specializations.size())));
+        }
+
+        return mySet;
+    }
+
     @Bean
     CommandLineRunner commandLineRunner(UserRepository userRepository, AlertRepository alertRepository,
                                         SpecializationRepository specializationRepository) {
@@ -54,12 +65,12 @@ public class GenerateMockData {
                 User u = User.builder()
                         .firstName("Robert")
                         .lastName("Makłowicz")
-                        .email("user" + i + "@example.com")
+                        .email("user" + (i+1) + "@example.com")
                         .phoneNumber("123666997")
                         .passwordHash(passwordEncoder.encode("test"))
                         .role(UserRole.SERVICEMAN)
                         .specializations(
-                                newHashSet(specializations.get(i % SPECIALIZATION_COUNT))
+                                getNRandSpecializations(specializations)
                         )
                         .build();
 
@@ -111,11 +122,5 @@ public class GenerateMockData {
             userRepository.saveAll(users);
             alertRepository.saveAll(alerts);
         };
-    }
-
-    public static final <T> Set<T> newHashSet(T... objs) {
-        Set<T> set = new HashSet<T>();
-        Collections.addAll(set, objs);
-        return set;
     }
 }

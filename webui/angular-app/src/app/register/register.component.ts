@@ -48,6 +48,7 @@ export class RegisterComponent {
             }),
             catchError(err => {
               console.log('Error: ', err);
+              window.alert('Registration failed');
               return throwError(err);
             })
         )

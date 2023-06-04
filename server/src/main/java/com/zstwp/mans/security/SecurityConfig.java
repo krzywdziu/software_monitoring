@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .cors().configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
 //                    config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-                    config.setAllowedOrigins(List.of("http://localhost:4200", "mans.piotmni.pl"));
+                    config.setAllowedOrigins(List.of("http://localhost:4200", "https://mans.piotmni.pl"));
                     config.setAllowedMethods(Collections.singletonList("*"));
                     config.setAllowCredentials(true);
                     config.setAllowedHeaders(Collections.singletonList("*"));
