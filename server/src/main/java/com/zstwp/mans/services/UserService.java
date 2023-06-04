@@ -21,12 +21,12 @@ public class UserService {
     }
 
     public User getUserById(Long id) {
-        return userRepository.findUserById(id)
+        return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id " + id));
     }
 
     public User getUserByEmail(String email) {
-        return userRepository.findUserByEmail(email)
+        return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("User not found with email " + email));
     }
 

@@ -5,11 +5,13 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import jakarta.servlet.Filter;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,6 +29,7 @@ import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthen
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -41,7 +44,10 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private RSAKey rsaKey;
+    private final JwtAuthenticationFilter jwtAuthFilter;
+    private final AuthenticationProvider authenticationProvider;
+
+//    private RSAKey rsaKey;
     @Bean
     public AuthenticationManager authManager(UserDetailsService userDetailsService) {
         var authProvider = new DaoAuthenticationProvider();
@@ -60,33 +66,52 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .cors().configurationSource(new CorsConfigurationSource() {
-                    @Override
-                    public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                        CorsConfiguration config = new CorsConfiguration();
-                        config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-                        config.setAllowedMethods(Collections.singletonList("*"));
-                        config.setAllowCredentials(true);
-                        config.setAllowedHeaders(Collections.singletonList("*"));
-                        config.setMaxAge(3600L);
-                        return config;
-                    }
-                })
+        http
+                .csrf()
+                .disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/token", "/register")
+//                .requestMatchers("/auth/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
-                .csrf(csrf -> csrf.disable())
-                .authorizeRequests(auth -> auth
-                        .requestMatchers("/token", "/hello").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .httpBasic(withDefaults())
-                .exceptionHandling((ex) -> ex
-                        .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
-                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
-                )
-                .build();
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //new session for each request
+                .and()
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+
+
+//        return http
+//                .cors().configurationSource(new CorsConfigurationSource() {
+//                    @Override
+//                    public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+//                        CorsConfiguration config = new CorsConfiguration();
+//                        config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+//                        config.setAllowedMethods(Collections.singletonList("*"));
+//                        config.setAllowCredentials(true);
+//                        config.setAllowedHeaders(Collections.singletonList("*"));
+//                        config.setMaxAge(3600L);
+//                        return config;
+//                    }
+//                })
+//                .and()
+//                .csrf(csrf -> csrf.disable())
+//                .authorizeRequests(auth -> auth
+//                        .requestMatchers("/token", "/hello").permitAll()
+//                        .anyRequest().authenticated()
+//                )
+//                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+////                .httpBasic(withDefaults())
+//                .exceptionHandling((ex) -> ex
+//                        .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
+//                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
+//                )
+//                .build();
     }
 
     @Bean
@@ -94,27 +119,27 @@ public class SecurityConfig {
         return (web) -> web.ignoring().requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/proxy/**");
     }
 
-    @Bean
-    public JWKSource<SecurityContext> jwkSource() {
-        rsaKey = Jwks.generateRsa();
-        JWKSet jwkSet = new JWKSet(rsaKey);
-        return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
-    }
+//    @Bean
+//    public JWKSource<SecurityContext> jwkSource() {
+//        rsaKey = Jwks.generateRsa();
+//        JWKSet jwkSet = new JWKSet(rsaKey);
+//        return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
+//    }
 
-    @Bean
-    JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwks) {
-        return new NimbusJwtEncoder(jwks);
-    }
+//    @Bean
+//    JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwks) {
+//        return new NimbusJwtEncoder(jwks);
+//    }
 
-    @Bean
-    JwtDecoder jwtDecoder() throws JOSEException {
-        return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build();
-    }
+//    @Bean
+//    JwtDecoder jwtDecoder() throws JOSEException {
+//        return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build();
+//    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:4200"));
+        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
         configuration.setAllowedMethods(List.of("GET","POST"));
         configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

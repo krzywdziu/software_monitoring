@@ -11,12 +11,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AlertRepository extends JpaRepository<Alert, Long> {
     List<Alert> findAllBySeverity(AlertSeverity severity);
 
-    Alert findAlertById(long id);
+    Optional<Alert> findAlertById(long id);
 
     List<Alert> findAllByBoxIp(String boxIp);
 
