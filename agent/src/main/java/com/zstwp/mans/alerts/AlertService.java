@@ -87,7 +87,7 @@ public class AlertService {
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
 
-                                kafkaProducer.writeMessage(alert.toString());
+                                kafkaProducer.writeMessage(alert);
 
                             }
 
@@ -109,7 +109,7 @@ public class AlertService {
 
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
-                                kafkaProducer.writeMessage(alert.toString());
+                                kafkaProducer.writeMessage(alert);
 
                             }
 
@@ -131,7 +131,7 @@ public class AlertService {
 
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
-                                kafkaProducer.writeMessage(alert.toString());
+                                kafkaProducer.writeMessage(alert);
 
                             }
 
@@ -153,7 +153,7 @@ public class AlertService {
 
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
-                                kafkaProducer.writeMessage(alert.toString());
+                                kafkaProducer.writeMessage(alert);
 
                             }
                         }
