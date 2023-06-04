@@ -1,5 +1,8 @@
 package com.zstwp.mans.alerts;
 
+import com.zstwp.mans.dto.AlertDto;
+import com.zstwp.mans.dto.AlertSeverity;
+import com.zstwp.mans.dto.AlertStatus;
 import com.zstwp.mans.kafka.KafkaProducer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -87,7 +90,7 @@ public class AlertService {
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
 
-                                kafkaProducer.writeMessage(alert);
+                                kafkaProducer.writeMessage(alert.toString());
 
                             }
 
@@ -109,7 +112,7 @@ public class AlertService {
 
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
-                                kafkaProducer.writeMessage(alert);
+                                kafkaProducer.writeMessage(alert.toString());
 
                             }
 
@@ -131,7 +134,7 @@ public class AlertService {
 
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
-                                kafkaProducer.writeMessage(alert);
+                                kafkaProducer.writeMessage(alert.toString());
 
                             }
 
@@ -153,7 +156,7 @@ public class AlertService {
 
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
-                                kafkaProducer.writeMessage(alert);
+                                kafkaProducer.writeMessage(alert.toString());
 
                             }
                         }
