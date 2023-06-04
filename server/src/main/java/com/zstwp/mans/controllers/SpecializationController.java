@@ -1,8 +1,8 @@
 package com.zstwp.mans.controllers;
 
 
-import com.zstwp.mans.database.entities.Specialization;
-import com.zstwp.mans.services.SpecializationService;
+import com.zstwp.mans.domain.database.entities.Specialization;
+import com.zstwp.mans.domain.services.SpecializationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
