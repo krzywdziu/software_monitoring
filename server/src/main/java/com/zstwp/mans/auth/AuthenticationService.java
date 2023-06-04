@@ -1,11 +1,11 @@
 package com.zstwp.mans.auth;
 
-import com.zstwp.mans.database.entities.User;
-import com.zstwp.mans.database.entities.UserRole;
-import com.zstwp.mans.database.repositories.UserRepository;
+import com.zstwp.mans.domain.database.entities.User;
+import com.zstwp.mans.domain.database.entities.UserRole;
+import com.zstwp.mans.domain.database.repositories.UserRepository;
 import com.zstwp.mans.security.JwtService;
-import com.zstwp.mans.services.exceptions.UserAlreadyExistsException;
-import com.zstwp.mans.services.exceptions.UserNotFoundException;
+import com.zstwp.mans.domain.services.exceptions.UserAlreadyExistsException;
+import com.zstwp.mans.domain.services.exceptions.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

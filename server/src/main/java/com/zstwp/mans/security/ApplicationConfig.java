@@ -1,6 +1,6 @@
 package com.zstwp.mans.security;
 
-import com.zstwp.mans.database.repositories.UserRepository;
+import com.zstwp.mans.domain.database.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

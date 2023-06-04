@@ -1,7 +1,7 @@
 package com.zstwp.mans.kafka;
 
-import com.zstwp.mans.dto.AlertDto;
-import com.zstwp.mans.services.AlertHandler;
+import com.zstwp.mans.domain.dto.AlertDto;
+import com.zstwp.mans.domain.services.AlertHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;

@@ -1,10 +1,10 @@
 package com.zstwp.mans.controllers;
 
-import com.zstwp.mans.database.entities.User;
-import com.zstwp.mans.database.entities.UserSpecialization;
-import com.zstwp.mans.dto.UserDto;
-import com.zstwp.mans.mappers.UserMapper;
-import com.zstwp.mans.services.UserService;
+import com.zstwp.mans.domain.database.entities.User;
+import com.zstwp.mans.domain.database.entities.UserSpecialization;
+import com.zstwp.mans.domain.dto.UserDto;
+import com.zstwp.mans.domain.mappers.UserMapper;
+import com.zstwp.mans.domain.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

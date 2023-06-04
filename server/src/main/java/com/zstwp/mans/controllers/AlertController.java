@@ -1,11 +1,11 @@
 package com.zstwp.mans.controllers;
 
-import com.zstwp.mans.database.entities.Alert;
-import com.zstwp.mans.database.entities.AlertSeverity;
-import com.zstwp.mans.database.entities.AlertStatus;
-import com.zstwp.mans.dto.AlertDto;
-import com.zstwp.mans.mappers.AlertMapper;
-import com.zstwp.mans.services.AlertService;
+import com.zstwp.mans.domain.database.entities.Alert;
+import com.zstwp.mans.domain.database.entities.AlertSeverity;
+import com.zstwp.mans.domain.database.entities.AlertStatus;
+import com.zstwp.mans.domain.dto.AlertDto;
+import com.zstwp.mans.domain.mappers.AlertMapper;
+import com.zstwp.mans.domain.services.AlertService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
