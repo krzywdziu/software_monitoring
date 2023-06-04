@@ -1,0 +1,41 @@
+2015-02-18 20:19:17 UTC [6459-7] vdsr@sails LOG:  statement: begin
+2015-02-18 20:19:17 UTC [6459-8] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "groups" ("name", "parentGroupRef", "isCompany", "companyRef", "createdAt", "updatedAt") values ($1, $2, $3, $4, $5, $6) RETURNING *
+2015-02-18 20:19:17 UTC [6459-9] vdsr@sails DETAIL:  parameters: $1 = 'testclient', $2 = '5', $3 = 't', $4 = '1', $5 = '2015-02-18 20:19:17+00', $6 = '2015-02-18 20:19:17+00'
+2015-02-18 20:19:17 UTC [6459-10] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "users" ("firstName", "lastName", "email", "companyRef", "isMainUser", "password", "middleName", "createdAt", "updatedAt") values ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *
+2015-02-18 20:19:17 UTC [6459-11] vdsr@sails DETAIL:  parameters: $1 = 'aa', $2 = 'bb', $3 = 'aa@bb.com', $4 = '18', $5 = 't', $6 = '06a8ec164adcc7db4edfb6ca20c07b20', $7 = '', $8 = '2015-02-18 20:19:17+00', $9 = '2015-02-18 20:19:17+00'
+2015-02-18 20:19:17 UTC [6459-12] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "roles" ("name", "companyRef", "createdAt", "updatedAt") values ($1, $2, $3, $4) RETURNING *
+2015-02-18 20:19:17 UTC [6459-13] vdsr@sails DETAIL:  parameters: $1 = 'Master', $2 = '18', $3 = '2015-02-18 20:19:17+00', $4 = '2015-02-18 20:19:17+00'
+2015-02-18 20:19:17 UTC [6459-14] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "userroles" ("roleRef", "userRef", "createdAt", "updatedAt") values ($1, $2, $3, $4) RETURNING *
+2015-02-18 20:19:17 UTC [6459-15] vdsr@sails DETAIL:  parameters: $1 = '11', $2 = '13', $3 = '2015-02-18 20:19:17+00', $4 = '2015-02-18 20:19:17+00'
+2015-02-18 20:19:17 UTC [6459-16] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "rolepermissions" ("roleRef", "permissionRef", "createdAt", "updatedAt") values ($1, $2, $3, $4) RETURNING *
+2015-02-18 20:19:17 UTC [6459-17] vdsr@sails DETAIL:  parameters: $1 = '11', $2 = '24', $3 = '2015-02-18 20:19:17+00', $4 = '2015-02-18 20:19:17+00'
+2015-02-18 20:19:17 UTC [6459-18] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "rolepermissions" ("roleRef", "permissionRef", "createdAt", "updatedAt") values ($1, $2, $3, $4) RETURNING *
+2015-02-18 20:19:17 UTC [6459-19] vdsr@sails DETAIL:  parameters: $1 = '11', $2 = '22', $3 = '2015-02-18 20:19:17+00', $4 = '2015-02-18 20:19:17+00'
+2015-02-18 20:19:17 UTC [6459-20] vdsr@sails LOG:  execute <unnamed>: SELECT "groups"."name", "groups"."notes", "groups"."parentGroupRef", "groups"."isCompany", "groups"."hierPos", "groups"."companyRef", "groups"."id", "groups"."createdAt", "groups"."updatedAt" FROM "groups" AS "groups"  WHERE "groups"."companyRef" = $1 
+2015-02-18 20:19:17 UTC [6459-21] vdsr@sails DETAIL:  parameters: $1 = '1'
+2015-02-18 20:19:17 UTC [6461-1] vdsr@sails LOG:  statement:  update groups set "hierPos" = case id when 2 then '1' when 3 then '2' when 4 then '3' when 5 then '4' when 6 then '4.1' when 10 then '4.1.1' when 18 then '4.2' when 13 then '5' when 17 then '6' else "hierPos" end  where id in (2,3,4,5,6,10,18,13,17) 
+2015-02-18 20:19:17 UTC [6459-22] vdsr@sails LOG:  statement: commit
+2015-02-18 20:26:08 UTC [6477-1] vdsr@sails LOG:  execute <unnamed>: SELECT "users"."firstName", "users"."middleName", "users"."lastName", "users"."email", "users"."password", "users"."resetKey", "users"."resetKeyGeneratedAt", "users"."isMainUser", "users"."companyRef", "users"."id", "users"."createdAt", "users"."updatedAt" FROM "users" AS "users"  WHERE "users"."id" = $1  LIMIT 1
+2015-02-18 20:26:08 UTC [6477-2] vdsr@sails DETAIL:  parameters: $1 = '8'
+2015-02-18 20:26:08 UTC [6477-3] vdsr@sails LOG:  execute <unnamed>: select p.name from permissions p  inner join rolepermissions rp on rp."permissionRef" = p.id   inner join roles r on r.id = rp."roleRef"  inner join userroles ur on ur."roleRef" = r.id  where ur."userRef" = $1
+2015-02-18 20:26:08 UTC [6477-4] vdsr@sails DETAIL:  parameters: $1 = '8'
+2015-02-18 20:26:08 UTC [6477-5] vdsr@sails LOG:  statement: begin
+2015-02-18 20:26:08 UTC [6477-6] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "groups" ("name", "isCompany", "parentGroupRef", "companyRef", "createdAt", "updatedAt") values ($1, $2, $3, $4, $5, $6) RETURNING *
+2015-02-18 20:26:08 UTC [6477-7] vdsr@sails DETAIL:  parameters: $1 = 'ddffdfd', $2 = 't', $3 = '1', $4 = '1', $5 = '2015-02-18 20:26:08+00', $6 = '2015-02-18 20:26:08+00'
+2015-02-18 20:26:08 UTC [6477-8] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "users" ("firstName", "lastName", "email", "companyRef", "isMainUser", "password", "middleName", "createdAt", "updatedAt") values ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *
+2015-02-18 20:26:08 UTC [6477-9] vdsr@sails DETAIL:  parameters: $1 = 'fdfd', $2 = 'fdfd', $3 = 'fdf@df.com', $4 = '19', $5 = 't', $6 = '7b9e87b1795e4d96bf9fbb898fa669fe', $7 = '', $8 = '2015-02-18 20:26:08+00', $9 = '2015-02-18 20:26:08+00'
+2015-02-18 20:26:08 UTC [6477-10] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "roles" ("name", "companyRef", "createdAt", "updatedAt") values ($1, $2, $3, $4) RETURNING *
+2015-02-18 20:26:08 UTC [6477-11] vdsr@sails DETAIL:  parameters: $1 = 'Master', $2 = '19', $3 = '2015-02-18 20:26:08+00', $4 = '2015-02-18 20:26:08+00'
+2015-02-18 20:26:08 UTC [6477-12] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "userroles" ("roleRef", "userRef", "createdAt", "updatedAt") values ($1, $2, $3, $4) RETURNING *
+2015-02-18 20:26:08 UTC [6477-13] vdsr@sails DETAIL:  parameters: $1 = '12', $2 = '14', $3 = '2015-02-18 20:26:08+00', $4 = '2015-02-18 20:26:08+00'
+2015-02-18 20:26:08 UTC [6477-14] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "rolepermissions" ("roleRef", "permissionRef", "createdAt", "updatedAt") values ($1, $2, $3, $4) RETURNING *
+2015-02-18 20:26:08 UTC [6477-15] vdsr@sails DETAIL:  parameters: $1 = '12', $2 = '24', $3 = '2015-02-18 20:26:08+00', $4 = '2015-02-18 20:26:08+00'
+2015-02-18 20:26:08 UTC [6477-16] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "rolepermissions" ("roleRef", "permissionRef", "createdAt", "updatedAt") values ($1, $2, $3, $4) RETURNING *
+2015-02-18 20:26:08 UTC [6477-17] vdsr@sails DETAIL:  parameters: $1 = '12', $2 = '22', $3 = '2015-02-18 20:26:08+00', $4 = '2015-02-18 20:26:08+00'
+2015-02-18 20:26:08 UTC [6477-18] vdsr@sails LOG:  execute <unnamed>: INSERT INTO "rolepermissions" ("roleRef", "permissionRef", "createdAt", "updatedAt") values ($1, $2, $3, $4) RETURNING *
+2015-02-18 20:26:08 UTC [6477-19] vdsr@sails DETAIL:  parameters: $1 = '12', $2 = '23', $3 = '2015-02-18 20:26:08+00', $4 = '2015-02-18 20:26:08+00'
+2015-02-18 20:26:08 UTC [6477-20] vdsr@sails LOG:  execute <unnamed>: SELECT "groups"."name", "groups"."notes", "groups"."parentGroupRef", "groups"."isCompany", "groups"."hierPos", "groups"."companyRef", "groups"."id", "groups"."createdAt", "groups"."updatedAt" FROM "groups" AS "groups"  WHERE "groups"."companyRef" = $1 
+2015-02-18 20:26:08 UTC [6477-21] vdsr@sails DETAIL:  parameters: $1 = '1'
+2015-02-18 20:26:08 UTC [6478-1] vdsr@sails LOG:  statement:  update groups set "hierPos" = case id when 2 then '1' when 3 then '2' when 4 then '3' when 5 then '4' when 6 then '4.1' when 10 then '4.1.1' when 18 then '4.2' when 13 then '5' when 17 then '6' when 19 then '7' else "hierPos" end  where id in (2,3,4,5,6,10,18,13,17,19) 
+2015-02-18 20:26:08 UTC [6479-1] vdsr@sails LOG:  statement: commit
+2015-02-18 20:26:08 UTC [6479-2] vdsr@sails WARNING:  there is no transaction in progress
