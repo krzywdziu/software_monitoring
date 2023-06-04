@@ -48,7 +48,7 @@
                     <div style="display: flex; flex-direction: column;" *ngIf="alert.userDto?.id">
                       <p class="text-white">ZMIEŃ STATUS</p>
                       <select class="mb-3 px-4 py-2" style="background-color: white; color: black" [(ngModel)]="selectedStatus" name="selectedStatus">
-                        <option *ngFor="let item of statusEnum" [value]="item" [selected]="item === alert.status">{{ item }}</option>
+                        <option *ngFor="let item of statusEnum" [value]="item">{{ item }}</option>
                       </select>
                       <button class="btn btn-dark btn-lg my-3" style="background-color: white; color: black" type="submit" (click)="changeAlertStatus()">Potwierdź</button>
                     </div>

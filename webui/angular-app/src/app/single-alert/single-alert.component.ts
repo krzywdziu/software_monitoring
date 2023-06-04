@@ -28,9 +28,10 @@ export class SingleAlertComponent implements OnInit {
         this.http
             .get<any>(`http://localhost:8080/alerts/${id}`, {headers: headers, params})
             .subscribe(
-                (res) => (this.alert = res),
+                (res) => {this.alert = res; this.selectedStatus = this.alert.status;},
                 (err) => console.log('Error: ', err)
             );
+
     }
 
     changeAlertStatus() {
