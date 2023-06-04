@@ -2,19 +2,91 @@
     <div class="row">
         <div class="d-flex justify-content-center">
             <div class="col-12">
-                <div class="card" style="border-radius: 1rem;">
+                <div class="card bg-dark" style="border-radius: 1rem;">
                     <div class="card-body">
                         <div class="container px-0">
                             <div class="d-flex justify-content-center">
-                                <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+                                <div class="col-12">
                                     <section class="vh-30 gradient-custom">
                                         <div class="container pb-1 pt-2 px-0 h-100">
                                             <div class="col-12">
-                                                <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                                                    <div class="card-body p-3 text-center"></div>
-                                                    <div class="card-body px-5 py-0 text-center form-group">
+                                                <div class="card m-4" style="border-radius: 1rem;">
+                                                    <div class="card-body p-4 text-center form-group">
                                                         <div class="mt-md-4 pb-4">
-                                                            <h2 class="fw-bold mb-2 text-uppercase">Witaj {{me}}!</h2>
+                                                            <h2 class="fw-bold mb-2 text-uppercase">Witaj {{me?.firstName}}!</h2>
+                                                        </div>
+                                                        <div class="table-responsive">
+                                                            <table class="table-borderless my-2 mx-0 w-100 ">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td style="width: 30%;" class="text-center px-5">
+                                                                    <div class="d-flex justify-content-center pb-2">
+                                                                        <div class="serviceman-logo rounded-circle">
+                                                                            <i class="fa-solid fa-helmet-safety fa-2xl"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="px-2">
+                                                                        <div class="table-responsive">
+                                                                            <table>
+                                                                                <tbody>
+                                                                                <tr>
+                                                                                    <td style="width: 70%;">
+                                                                                        <b><small>Liczba alertów</small></b>
+                                                                                    </td>
+                                                                                    <td style="width: 30%;">
+                                                                                        <small>{{me?.alertsCount}}</small>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <a class="btn btn-dark btn-block" [routerLink]="'/alerts/user'" [queryParams]="{ id: me?.id }">Historia alertów</a>
+                                                                </td>
+                                                                <td style="width: 70%;" class="pl-5">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table-responsive my-0 w-100">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td class="float-start">
+                                                                                <b>Imię</b>
+                                                                            </td>
+                                                                            <td>{{me?.firstName}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="float-start">
+                                                                                <b>Nazwisko</b>
+                                                                            </td>
+                                                                            <td>{{me?.lastName}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="float-start">
+                                                                                <b>E-mail</b>
+                                                                            </td>
+                                                                            <td>{{me?.email}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="float-start">
+                                                                                <b>Numer telefonu</b>
+                                                                            </td>
+                                                                            <td>{{me?.phoneNumber}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="float-start">
+                                                                                <b>Specjalizacje</b>
+                                                                            </td>
+                                                                            <td>
+                                                                                {{me?.specializations}}
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                         </div>
                                                     </div>
                                                 </div>
