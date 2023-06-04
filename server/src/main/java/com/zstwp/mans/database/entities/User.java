@@ -47,7 +47,7 @@ public class User implements UserDetails {
     private String firstName;
     private String lastName;
 
-//    @Column(unique = true, nullable = false) // only for test!!!
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
@@ -63,7 +63,6 @@ public class User implements UserDetails {
 
     private String phoneNumber;
 
-//    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "users_specializations",

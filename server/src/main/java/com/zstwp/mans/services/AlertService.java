@@ -6,7 +6,6 @@ import com.zstwp.mans.database.entities.AlertStatus;
 import com.zstwp.mans.database.repositories.AlertRepository;
 import com.zstwp.mans.dto.AlertDto;
 import com.zstwp.mans.services.exceptions.AlertNotFoundException;
-import com.zstwp.mans.services.exceptions.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
