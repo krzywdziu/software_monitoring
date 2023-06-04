@@ -11,7 +11,7 @@ import {AuthService} from "../auth.service";
 export class LoginComponent {
     public form = new FormGroup({
         username: new FormControl('admin', Validators.required),
-        password: new FormControl('', Validators.required)
+        password: new FormControl('admin', Validators.required)
     });
 
     constructor(private authService: AuthService, private router: Router) {}

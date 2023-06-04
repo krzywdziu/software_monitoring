@@ -7,39 +7,51 @@
             <div class="col-12">
               <div class="card bg-dark text-white" style="border-radius: 1rem;">
                 <div class="card-body px-5 py-0 text-center">
-                  <div class="mt-md-4 pb-4">
-
+                  <div class="row mt-md-4 pb-1">
                     <h2 class="fw-bold text-uppercase">AWARIA NR {{ alert.id }}</h2>
-
-                    <hr>
-                    <p class="text-white-50">ADRES IP URZĄDZENIA</p>
-                    <p class="fw-bold text-uppercase">{{ alert.boxIp }}</p>
-
-                    <hr>
-                    <p class="text-white-50">STATUS</p>
-                    <p class="fw-bold text-uppercase">{{ alert.status }}</p>
-
-                    <hr>
-                    <p class="text-white-50">OPIS AWARII</p>
-                    <p class="fw-bold mb-2 text-uppercase">{{ alert.description }}</p>
-
-                    <hr>
-                    <div [ngClass]="getRowColor(alert.severity)">
-                      <p class="text-50">PRIORYTET</p>
-                      <p class="fw-bold text-uppercase">{{ alert.severity }}</p>
+                    <hr style="border-top: 5px solid;">
+                    <div class="col-md-6">
+                      <p class="text-white-50">ADRES IP URZĄDZENIA</p>
+                      <p class="fw-bold text-uppercase">{{ alert.boxIp }}</p>
+                      <hr>
+                      <div [ngClass]="getRowColor(alert.severity)">
+                        <p class="text-50">PRIORYTET</p>
+                        <p class="fw-bold text-uppercase">{{ alert.severity }}</p>
+                      </div>
+                      <hr>
+                      <p class="text-white-50">OPIS AWARII</p>
+                      <p class="fw-bold mb-2 text-uppercase">{{ alert.description }}</p>
                     </div>
+                    <div class="col-md-6">
+                      <p class="text-white-50">STATUS</p>
+                      <p class="fw-bold text-uppercase">{{ alert.status }}</p>
+                      <hr>
+                      <p class="text-white-50">DATA POWSTANIA AWARII</p>
+                      <p class="fw-bold text-uppercase">{{ alert.timestamp }}</p>
 
-                    <hr>
-                    <p class="text-white-50">DATA POWSTANIA AWARII</p>
-                    <p class="fw-bold text-uppercase">{{ alert.timestamp }}</p>
-
-                    <!-- todo: asignee -->
-
+                      <hr>
+                      <p class="text-white-50">PRZYPISANY DO</p>
+                      <p class="fw-bold text-uppercase" *ngIf="!alert.userDto?.id; else asignee">-</p>
+                      <ng-template #asignee>
+                        <p class="fw-bold text-uppercase">{{ alert.userDto.firstName}} {{alert.userDto.lastName}}</p>
+                      </ng-template>
+                    </div>
+                    <hr style="border-top: 5px solid;">
                   </div>
                 </div>
-                <div class="form-outline form-white mb-4">
-                  <form>
-                    <button class="btn btn-dark btn-lg" style="background-color: white; color: black" type="submit">Przypisz do mnie</button>
+                <div class="form-outline form-white mb-4 mt-0 mx-5">
+                  <form style="display: flex; flex-direction: column;">
+                    <div  *ngIf="alert.userDto.id === id_user">
+                      <button class="btn btn-dark btn-lg" style="background-color: white; color: black" type="submit" (click)="assignToMe()">Przypisz do mnie</button>
+                      <hr>
+                    </div>
+                    <div style="display: flex; flex-direction: column;" *ngIf="alert.userDto?.id">
+                      <p class="text-white">ZMIEŃ STATUS</p>
+                      <select class="mb-3 px-4 py-2" style="background-color: white; color: black" [(ngModel)]="selectedStatus" name="selectedStatus">
+                        <option *ngFor="let item of statusEnum" [value]="item">{{ item }}</option>
+                      </select>
+                      <button class="btn btn-dark btn-lg my-3" style="background-color: white; color: black" type="submit" (click)="changeAlertStatus()">Potwierdź</button>
+                    </div>
                   </form>
                 </div>
               </div>

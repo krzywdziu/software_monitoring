@@ -10,10 +10,12 @@ import { LoginComponent } from './login/login.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { SingleAlertComponent } from './single-alert/single-alert.component';
 import { ServicemenDashboardComponent } from './servicemen-dashboard/servicemen-dashboard.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "./auth-guard.guard";
 import { LogoutService } from './logout.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { UserAlertsComponent } from './user-alerts/user-alerts.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     AppNavbarComponent,
     SingleAlertComponent,
     ServicemenDashboardComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    AboutMeComponent,
+    UserAlertsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   providers: [AuthGuard, LogoutService],
   bootstrap: [AppComponent]

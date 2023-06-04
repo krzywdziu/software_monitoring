@@ -1,5 +1,6 @@
 package com.zstwp.mans.controllers;
 
+import com.zstwp.mans.dto.LoginDto;
 import com.zstwp.mans.models.LoginRequest;
 import com.zstwp.mans.services.TokenService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,8 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
 
     @PostMapping("/token")
-    public String token(@RequestBody LoginRequest userLogin) {
+    public LoginDto token(@RequestBody LoginRequest userLogin) {
+
         LOG.debug("Token requested for user: '{}'", userLogin);
 
         Authentication authentication = authenticationManager
@@ -31,8 +33,11 @@ public class AuthController {
                         userLogin.username(), userLogin.password())
                 );
 
-//        LOG.debug("Token granted {}", token);
+        long id = 1L;
+        String token = tokenService.generateToken(authentication);
 
-        return tokenService.generateToken(authentication);
+        LOG.debug("Token granted {}", token);
+
+        return new LoginDto(id, token);
     }
 }

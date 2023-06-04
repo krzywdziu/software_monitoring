@@ -8,11 +8,13 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
     public alerts: any[] = [];
+    public myAlerts: any[] = [];
 
     constructor(private http: HttpClient) {}
 
     ngOnInit(): void {
         const id_token = localStorage.getItem('id_token')
+        const id_user = localStorage.getItem('id_user');
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -21,7 +23,13 @@ export class HomeComponent implements OnInit {
 
         this.http.get<any[]>('http://localhost:8080/alerts', { headers: headers })
             .subscribe(
-                (res: any) => {this.alerts = res; },
+                (res: any) => {this.alerts = res;},
+                (err: any) => console.log('Error: ', err)
+            );
+
+        this.http.get<any[]>(`http://localhost:8080/alerts/user?id=${id_user}`, { headers: headers })
+            .subscribe(
+                (res: any) => {this.myAlerts = res;},
                 (err: any) => console.log('Error: ', err)
             );
     }

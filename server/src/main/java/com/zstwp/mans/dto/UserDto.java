@@ -17,6 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
+    long id;
     String firstName;
     String lastName;
     String phoneNumber;
@@ -25,6 +26,7 @@ public class UserDto {
     Set<Specialization> specializations;
 
     public UserDto(User user) {
+        this.id = user.getId();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.phoneNumber = user.getPhoneNumber();

@@ -28,6 +28,7 @@
                                     <th scope="col">Priorytet</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Data</th>
+                                    <th scope="col">Status przypisania</th>
                                     <th scope="col">Informacje</th>
                                   </tr>
                                   </thead>
@@ -38,8 +39,11 @@
                                     <td>{{ alert.status }}</td>
                                     <td>{{ alert.timestamp }}</td>
                                     <td>
-                                      <!-- use routerLink for redirect-->
-                                      <a class="btn btn-secondary" routerLink='/alerts/{{alert.id}}'>Więcej</a>
+                                      <span *ngIf="alert.userDto.id; else noUserId">Przypisany</span>
+                                      <ng-template #noUserId>Nieprzypisany</ng-template>
+                                    </td>
+                                    <td>
+                                      <a class="btn btn-secondary" [routerLink]="'/alerts/' + alert.id">Więcej</a>
                                     </td>
                                   </tr>
                                   </tbody>
@@ -51,8 +55,7 @@
                     </div>
                   </div>
                   <!---------------------------- my alerts ---------------------------------->
-                  <!-- todo: my alerts - przefiltrowane alerty -->
-                  <div class="container py-5 px-0 h-100">
+                  <div class="container py-5 px-0 h-100" *ngIf="myAlerts.length > 0">
                     <div class="col-12">
                       <div class="card bg-dark text-white" style="border-radius: 1rem;">
                         <div class="card-body p-3 text-center">
@@ -65,19 +68,20 @@
                                 <thead>
                                 <tr class="table text-white">
                                   <th scope="col">Alert</th>
+                                  <th scope="col">Priorytet</th>
                                   <th scope="col">Status</th>
                                   <th scope="col">Data</th>
                                   <th scope="col">Informacje</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let alert of alerts;" [ngClass]="getRowColor(alert.severity)">
+                                <tr *ngFor="let alert of myAlerts;" [ngClass]="getRowColor(alert.severity)">
                                   <td>{{ alert.description }}</td>
                                   <td>{{ alert.severity }}</td>
                                   <td>{{ alert.status }}</td>
                                   <td>{{ alert.timestamp }}</td>
                                   <td>
-                                    <a class="btn btn-secondary" routerLink='/alerts/{{alert.id}}'>Więcej</a>
+                                    <a class="btn btn-secondary" [routerLink]="'/alerts/' + alert.id">Więcej</a>
                                   </td>
                                 </tr>
                                 </tbody>
