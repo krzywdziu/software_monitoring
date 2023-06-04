@@ -20,7 +20,7 @@ export class AuthService {
 
     login(loginData: any): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/token', loginData,
+        return this.http.post('http://localhost:8080/auth/authenticate', loginData,
             { headers: headers, observe: 'response', responseType: 'text'})
             .pipe(
             tap((response: any) => {

@@ -10,9 +10,11 @@ import com.zstwp.mans.database.entities.UserSpecialization;
 import com.zstwp.mans.database.repositories.AlertRepository;
 import com.zstwp.mans.database.repositories.SpecializationRepository;
 import com.zstwp.mans.database.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,12 +25,15 @@ import java.util.Random;
 import java.util.Set;
 
 @Configuration
+@RequiredArgsConstructor
 public class InitMockData {
 
     // generate mock data
     private static final int USER_COUNT = 12;
     private static final int SPECIALIZATION_COUNT = UserSpecialization.values().length;
     private static final int ALERT_COUNT = 22;
+
+    private final PasswordEncoder passwordEncoder;
 
     private static final Random PRNG = new Random();
 
@@ -52,9 +57,10 @@ public class InitMockData {
                 User u = User.builder()
                         .firstName("Robert")
                         .lastName("Makłowicz")
-                        .email("example@domain.com")
+                        .email(PRNG.nextInt(10000) + "example@example.com")
                         .phoneNumber("123666997")
-                        .passwordHash("{noop}pass")
+                        .passwordHash(passwordEncoder.encode("test"))
+//                        .passwordHash("{noop}pass")
                         .role(UserRole.SERVICEMAN)
                         .specializations(newHashSet(specializations.get(i % SPECIALIZATION_COUNT)))
                         .build();
@@ -64,16 +70,16 @@ public class InitMockData {
 
             User test = User.builder()
                     .firstName("Test")
-                    .email("test@mail") //@@@@
-                    .passwordHash("{noop}pass")
+                    .email("test@example.com") //@@@@
+                    .passwordHash(passwordEncoder.encode("test"))
                     .role(UserRole.SERVICEMAN)
                     .specializations(new HashSet<>(specializations))
                     .build();
 
             User admin = User.builder()
                     .firstName("Admin")
-                    .email("admin@email.com")
-                    .passwordHash("{noop}pass")
+                    .email("admin@example.com")
+                    .passwordHash(passwordEncoder.encode("admin"))
                     .role(UserRole.ADMIN)
                     .build();
 
@@ -90,7 +96,6 @@ public class InitMockData {
                         .build();
                 alerts.add(a);
             }
-
 
             users.add(test);
 
