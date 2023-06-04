@@ -66,9 +66,18 @@ public class GenerateMockData {
                 users.add(u);
             }
 
+            User demo = User.builder()
+                    .firstName("demo")
+                    .lastName("demo")
+                    .email("panLimonka965@gmail.com")
+                    .passwordHash(passwordEncoder.encode("test"))
+                    .role(UserRole.SERVICEMAN)
+                    .specializations(new HashSet<>(specializations))
+                    .build();
+
             User test = User.builder()
                     .firstName("test")
-                    .email("panLimonka965%40gmail.com") //@@@@
+                    .email("test@example.com") //@@@@
                     .passwordHash(passwordEncoder.encode("test"))
                     .role(UserRole.SERVICEMAN)
                     .specializations(new HashSet<>(specializations)) //all
@@ -94,6 +103,7 @@ public class GenerateMockData {
             }
 
             // no default alerts
+            users.add(demo);
             users.add(test);
             users.add(admin);
 
