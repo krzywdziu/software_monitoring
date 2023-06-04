@@ -105,7 +105,9 @@ public class GenerateMockData {
                 Alert a = Alert.builder()
                         .description("Example description")
                         .boxIp("10.0.8." + PRNG.nextInt(254))
-                        .severity(AlertSeverity.values()[i % AlertSeverity.values().length])
+                        .severity(
+                                AlertSeverity.values()[PRNG.nextInt(10) % AlertSeverity.values().length]
+                        )
                         .timestamp(LocalDateTime.now())
                         .status(AlertStatus.IN_PROGRESS)
                         .user(users.get(PRNG.nextInt(users.size())))
