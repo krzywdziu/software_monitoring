@@ -11,13 +11,13 @@ export class SingleAlertComponent implements OnInit {
     public alert: any = {};
     public selectedStatus: string = '';
     statusEnum: string[] = ['IN_PROGRESS', 'RESOLVED', 'WONT_FIX'];
+    public id_user = localStorage.getItem('id_user');
 
     constructor(private http: HttpClient, private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
         const id_token = localStorage.getItem('id_token');
-        const id_user = localStorage.getItem('id_user');
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + id_token

@@ -41,11 +41,11 @@
                 </div>
                 <div class="form-outline form-white mb-4 mt-0 mx-5">
                   <form style="display: flex; flex-direction: column;">
-                    <button class="btn btn-dark btn-lg"
-                            style="background-color: white; color: black" type="submit" (click)="assignToMe()">Przypisz do mnie
-                    </button>
-                    <div style="display: flex; flex-direction: column;" *ngIf="alert.userDto?.id">
+                    <div  *ngIf="alert.userDto.id === id_user">
+                      <button class="btn btn-dark btn-lg" style="background-color: white; color: black" type="submit" (click)="assignToMe()">Przypisz do mnie</button>
                       <hr>
+                    </div>
+                    <div style="display: flex; flex-direction: column;" *ngIf="alert.userDto?.id">
                       <p class="text-white">ZMIEŃ STATUS</p>
                       <select class="mb-3 px-4 py-2" style="background-color: white; color: black" [(ngModel)]="selectedStatus" name="selectedStatus">
                         <option *ngFor="let item of statusEnum" [value]="item" [selected]="item === alert.status">{{ item }}</option>
