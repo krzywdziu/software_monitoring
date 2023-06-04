@@ -39,4 +39,7 @@ export class AboutMeComponent implements OnInit {
               (err: any) => console.log('Error: ', err)
           );
   }
+    getSpecializations(serviceman: any): string {
+        return serviceman.specializations.map((specialization: any) => specialization.name).join(', ');
+    }
 }
