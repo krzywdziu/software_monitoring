@@ -12,7 +12,7 @@ services:
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=spring_demo
+      - POSTGRES_DB=mans_demo
 
   zookeeper:
     image: wurstmeister/zookeeper
