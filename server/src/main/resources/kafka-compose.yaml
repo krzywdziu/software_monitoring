@@ -5,11 +5,11 @@ services:
     image: wurstmeister/zookeeper
     ports:
       - 2181:2181
-    container_name: zookeeper1
+    container_name: zookeeper
 
   kafka1:
     image: wurstmeister/kafka
-    container_name: kafka1
+    container_name: kafka
     ports:
       - 9092:9092
     environment:
