@@ -109,7 +109,7 @@ public class GenerateMockData {
                                 AlertSeverity.values()[PRNG.nextInt(10) % AlertSeverity.values().length]
                         )
                         .timestamp(LocalDateTime.now())
-                        .status(AlertStatus.IN_PROGRESS)
+                        .status(AlertStatus.ASSIGNED)
                         .user(users.get(PRNG.nextInt(users.size())))
                         .build();
                 alerts.add(a);

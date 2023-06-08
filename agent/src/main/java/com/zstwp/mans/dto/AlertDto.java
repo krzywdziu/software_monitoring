@@ -1,7 +1,16 @@
 package com.zstwp.mans.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 
-public record AlertDto(String description, AlertStatus status, String boxIp,
-                       AlertSeverity severity, LocalDateTime timestamp) {
+@AllArgsConstructor
+@Getter
+public class AlertDto {
+    String description;
+    AlertStatus status;
+    String boxIp;
+    AlertSeverity severity;
+    LocalDateTime timestamp;
 }

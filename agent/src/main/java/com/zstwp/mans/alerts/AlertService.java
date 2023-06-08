@@ -8,9 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.net.InetAddress;
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -19,7 +16,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 @RequiredArgsConstructor
 @Service
@@ -90,7 +86,7 @@ public class AlertService {
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
 
-                                kafkaProducer.writeMessage(alert.toString());
+                                kafkaProducer.sendMessage(alert);
 
                             }
 
@@ -112,7 +108,7 @@ public class AlertService {
 
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
-                                kafkaProducer.writeMessage(alert.toString());
+                                kafkaProducer.sendMessage(alert);
 
                             }
 
@@ -134,7 +130,7 @@ public class AlertService {
 
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
-                                kafkaProducer.writeMessage(alert.toString());
+                                kafkaProducer.sendMessage(alert);
 
                             }
 
@@ -156,7 +152,7 @@ public class AlertService {
 
                                 AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
 
-                                kafkaProducer.writeMessage(alert.toString());
+                                kafkaProducer.sendMessage(alert);
 
                             }
                         }
@@ -173,8 +169,8 @@ public class AlertService {
         executor.scheduleAtFixedRate(helloRunnable, 0, 60, TimeUnit.SECONDS);
     }
     
-    public void sendMessage(String data) {
-        kafkaProducer.writeMessage(data);
-        System.out.println("sent");
+    public void sendMessage(AlertDto alert) {
+        kafkaProducer.sendMessage(alert);
+        System.out.println("alert sent");
     }
 }

@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SingleAlertComponent implements OnInit {
     public alert: any = {};
     public selectedStatus: string = '';
-    statusEnum: string[] = ['IN_PROGRESS', 'RESOLVED', 'WONT_FIX'];
+    statusEnum: string[] = ['ASSIGNED', 'RESOLVED', 'WONT_FIX'];
     public id_user = localStorage.getItem('id_user');
 
     constructor(private http: HttpClient, private route: ActivatedRoute) {

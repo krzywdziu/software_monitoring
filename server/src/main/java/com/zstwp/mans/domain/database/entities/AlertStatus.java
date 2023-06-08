@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum AlertStatus {
     UNASSIGNED("unassigned"),
-    IN_PROGRESS("in_progress"),
+    ASSIGNED("ASSIGNED"),
     RESOLVED("resolved"),
     WONT_FIX("wont_fix");
 

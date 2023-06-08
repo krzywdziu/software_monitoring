@@ -1,6 +1,7 @@
 package com.zstwp.mans.domain.database.entities;
 
 import com.zstwp.mans.domain.dto.AlertDto;
+import com.zstwp.mans.kafka.KafkaAlertDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -51,6 +52,7 @@ public class Alert {
         this.boxIp = alertDto.getBoxIp();
         this.severity = alertDto.getSeverity();
         this.timestamp = alertDto.getTimestamp();
-        this.status = AlertStatus.UNASSIGNED;
+//        this.status = AlertStatus.UNASSIGNED;
+        this.status = user == null ? AlertStatus.UNASSIGNED : AlertStatus.ASSIGNED;
     }
 }

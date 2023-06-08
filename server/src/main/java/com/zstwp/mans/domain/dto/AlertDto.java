@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class AlertDto {
     long id;
     String description;
@@ -21,11 +23,10 @@ public class AlertDto {
     String boxIp;
     AlertSeverity severity;
     LocalDateTime timestamp;
-
     UserDto userDto;
 
     public AlertDto(Alert alert) {
-        this.id = alert.getId();
+        this.id = alert.getId(); // ---
         this.description = alert.getDescription();
         this.status = alert.getStatus();
         this.boxIp = alert.getBoxIp();
