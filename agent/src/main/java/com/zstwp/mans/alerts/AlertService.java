@@ -8,8 +8,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.net.InetAddress;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Properties;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -31,8 +35,11 @@ public class AlertService {
             public void run() {
 
                 try {
-                    System.out.println(System.getProperty("user.dir") + "\\agent\\src\\main\\java\\com\\zstwp\\mans\\logs");
-                    File directoryPath = new File(System.getProperty("user.dir") + "\\agent\\src\\main\\java\\com\\zstwp\\mans\\logs");
+                    String configFilePath = System.getProperty("user.dir") + "\\agent\\src\\main\\resources\\config.properties";
+                    FileInputStream propsInput = new FileInputStream(configFilePath);
+                    Properties prop = new Properties();
+                    prop.load(propsInput);
+                    File directoryPath = new File(prop.getProperty("AGENT_LOGS_PATH"));
                     //List of all files and directories
                     File filesList[] = directoryPath.listFiles();
                     System.out.println("List of files and directories in the specified directory:");
