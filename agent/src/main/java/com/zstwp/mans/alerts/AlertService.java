@@ -35,11 +35,11 @@ public class AlertService {
             public void run() {
 
                 try {
-                    String configFilePath = System.getProperty("user.dir") + "\\agent\\src\\main\\java\\com\\zstwp\\mans\\config.properties";
+                    String configFilePath = System.getProperty("user.dir") + "\\agent\\src\\main\\resources\\config.properties";
                     FileInputStream propsInput = new FileInputStream(configFilePath);
                     Properties prop = new Properties();
                     prop.load(propsInput);
-                    File directoryPath = new File(System.getProperty("user.dir") + prop.getProperty("AGENT_LOGS_PATH"));
+                    File directoryPath = new File(prop.getProperty("AGENT_LOGS_PATH"));
                     //List of all files and directories
                     File filesList[] = directoryPath.listFiles();
                     System.out.println("List of files and directories in the specified directory:");
