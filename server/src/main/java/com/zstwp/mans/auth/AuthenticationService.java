@@ -42,6 +42,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .id(user.getId())
                 .token(jwtToken)
+                .isAdmin(false)
                 .build();
     }
 
@@ -58,6 +59,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .id(user.getId())
                 .token(jwtToken)
+                .isAdmin(user.getRole() == UserRole.ADMIN)
                 .build();
     }
 }
