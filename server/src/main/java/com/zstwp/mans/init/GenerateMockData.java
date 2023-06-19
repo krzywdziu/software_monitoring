@@ -11,6 +11,7 @@ import com.zstwp.mans.domain.database.repositories.AlertRepository;
 import com.zstwp.mans.domain.database.repositories.SpecializationRepository;
 import com.zstwp.mans.domain.database.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -31,6 +31,9 @@ public class GenerateMockData {
     private static final int SERVICEMEN_COUNT = 12;
     private static final int SPECIALIZATION_COUNT = UserSpecialization.values().length;
     private static final int ALERT_COUNT = 22;
+
+    @Value("${demo.email}")
+    private String demoEmail;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -80,7 +83,7 @@ public class GenerateMockData {
             User demo = User.builder()
                     .firstName("demo")
                     .lastName("demo")
-                    .email("panLimonka965@gmail.com")
+                    .email(demoEmail)
                     .passwordHash(passwordEncoder.encode("test"))
                     .role(UserRole.SERVICEMAN)
                     .specializations(new HashSet<>(specializations))
