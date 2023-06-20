@@ -52,20 +52,19 @@
                                                 </div>
                                                 <div class="card-body px-5 py-0 text-center">
                                                     <div class="mt-md-4 pb-4">
-                                                        <h3 class="fw-bold mb-2 pb-4 text-uppercase">Rozwiązana alerty serwisanta {{user.firstName}} {{user.lastName}}</h3>
+                                                        <h3 class="fw-bold mb-2 pb-4 text-uppercase">Rozwiązane alerty serwisanta {{user.firstName}} {{user.lastName}}</h3>
                                                         <div class="table-responsive">
                                                             <table class="mt-md-4 table text-white">
                                                                 <thead>
                                                                 <tr class="table text-white">
                                                                     <th scope="col">Alert</th>
                                                                     <th scope="col">Priorytet</th>
-                                                                    <th scope="col">Status</th>
                                                                     <th scope="col">Data</th>
                                                                     <th scope="col">Informacje</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                <tr *ngFor="let alert of userAlerts;" [ngClass]="getRowColor(alert.severity)">
+                                                                <tr *ngFor="let alert of alertsResolved;" [ngClass]="getRowColor(alert.severity)">
                                                                     <td>{{ alert.description }}</td>
                                                                     <td>{{ alert.severity }}</td>
                                                                     <td>{{ alert.timestamp }}</td>

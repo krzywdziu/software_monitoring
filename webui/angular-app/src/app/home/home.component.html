@@ -103,13 +103,12 @@
                                 <tr class="table text-white">
                                   <th scope="col">Alert</th>
                                   <th scope="col">Priorytet</th>
-                                  <th scope="col">Status</th>
                                   <th scope="col">Data</th>
                                   <th scope="col">Informacje</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let alert of myAlerts;" [ngClass]="getRowColor(alert.severity)">
+                                <tr *ngFor="let alert of alertsResolved;" [ngClass]="getRowColor(alert.severity)">
                                   <td>{{ alert.description }}</td>
                                   <td>{{ alert.severity }}</td>
                                   <td>{{ alert.timestamp }}</td>

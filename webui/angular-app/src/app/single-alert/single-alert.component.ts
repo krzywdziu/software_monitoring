@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-single-alert',
@@ -13,7 +14,7 @@ export class SingleAlertComponent implements OnInit {
     statusEnum: string[] = ['ASSIGNED', 'RESOLVED', 'WONT_FIX'];
     public id_user = localStorage.getItem('id_user');
 
-    constructor(private http: HttpClient, private route: ActivatedRoute) {
+    constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit(): void {
@@ -51,11 +52,12 @@ export class SingleAlertComponent implements OnInit {
                     (res: HttpResponse<any>) => {
                         this.alert = res.body;
                         console.log('Success: ', res);
+                        this.router.navigate(['/']);
                     },
                     err => console.log('Error: ', err)
                 );
 
-            location.reload();
+            //location.reload();
         }
     }
 
@@ -76,11 +78,12 @@ export class SingleAlertComponent implements OnInit {
                 (res: HttpResponse<any>) => {
                     this.alert = res.body;
                     console.log('Success: ', res);
+                    this.router.navigate(['/']);
                 },
                 err => console.log('Error: ', err)
             );
 
-        location.reload();
+        //location.reload();
     }
     getRowColor(severity: string): string {
         switch (severity) {
