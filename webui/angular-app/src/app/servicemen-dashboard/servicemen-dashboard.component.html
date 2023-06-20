@@ -84,7 +84,7 @@
                     </table>
                   </div>
                   <!-- todo: if Admin -> delete -->
-                  <a class="btn btn-dark btn-block my-5" *ngIf="serviceman.firstName == 'admin'" [routerLink]="'/delete_user'">Usuń serwisanta</a>
+                  <a class="btn btn-dark btn-block my-5" *ngIf="isAdmin" [routerLink]="'/delete_user'">Usuń serwisanta</a>
                 </div>
               </div>
             </div>

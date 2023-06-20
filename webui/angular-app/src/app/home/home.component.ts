@@ -10,6 +10,9 @@ export class HomeComponent implements OnInit {
     public alerts: any[] = [];
     public myAlerts: any[] = [];
 
+    public alertsResolved: any[] = [];
+
+
     constructor(private http: HttpClient) {}
 
     ngOnInit(): void {
@@ -23,15 +26,32 @@ export class HomeComponent implements OnInit {
 
         this.http.get<any[]>('http://localhost:8080/alerts', { headers: headers })
             .subscribe(
-                (res: any) => {this.alerts = res;},
+                (res: any) => {
+                    this.alerts = res;
+                    this.filterResolvedAlerts();
+                },
                 (err: any) => console.log('Error: ', err)
             );
 
         this.http.get<any[]>(`http://localhost:8080/alerts/user?id=${id_user}`, { headers: headers })
             .subscribe(
-                (res: any) => {this.myAlerts = res;},
+                (res: any) => {
+                    this.myAlerts = res;
+                    this.filterResolvedAlerts();
+                },
                 (err: any) => console.log('Error: ', err)
             );
+    }
+
+    filterResolvedAlerts(): void {
+        if (this.alerts) {
+            this.alertsResolved = this.alerts.filter((alert) => alert.status === 'RESOLVED');
+            this.alerts = this.alerts.filter((alert) => alert.status !== 'RESOLVED');
+        }
+        if (this.myAlerts) {
+            //this.myAlertsResolved = this.myAlerts.filter((alert) => alert.status === 'RESOLVED');
+            this.myAlerts = this.myAlerts.filter((alert) => alert.status !== 'RESOLVED');
+        }
     }
 
     getRowColor(severity: string): string {

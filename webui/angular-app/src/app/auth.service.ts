@@ -12,6 +12,7 @@ export class AuthService {
     isLoggedIn$ = this._isLoggedIn$.asObservable();
     token: string | null = null;
     userId: string | null = null;
+    isAdmin: boolean | null = null;
 
     constructor(private http: HttpClient) {
         const token = localStorage.getItem('id_token');
@@ -27,11 +28,15 @@ export class AuthService {
                 const responseBody = JSON.parse(response.body)
                 const token = responseBody.token
                 const userId = responseBody.id;
+                const isAdmin = responseBody.isAdmin;
 
                 this.token = token;
                 this.userId = userId;
+                this.isAdmin = isAdmin;
+
                 localStorage.setItem('id_token', token);
                 localStorage.setItem('id_user', userId);
+                localStorage.setItem('is_admin', isAdmin);
                 this._isLoggedIn$.next(true);
             }),
             catchError(err => {
