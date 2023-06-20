@@ -46,11 +46,9 @@ export class HomeComponent implements OnInit {
     filterResolvedAlerts(): void {
         if (this.alerts) {
             this.alertsResolved = this.alerts.filter((alert) => alert.status === 'RESOLVED');
-            console.log(this.alertsResolved)
             this.alerts = this.alerts.filter((alert) => alert.status !== 'RESOLVED');
         }
         if (this.myAlerts) {
-            //this.myAlertsResolved = this.myAlerts.filter((alert) => alert.status === 'RESOLVED');
             this.myAlerts = this.myAlerts.filter((alert) => alert.status !== 'RESOLVED');
         }
     }
