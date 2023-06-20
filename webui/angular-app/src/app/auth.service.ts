@@ -28,7 +28,7 @@ export class AuthService {
                 const responseBody = JSON.parse(response.body)
                 const token = responseBody.token
                 const userId = responseBody.id;
-                const isAdmin = responseBody.isAdmin;
+                const isAdmin = responseBody.admin;
 
                 this.token = token;
                 this.userId = userId;
