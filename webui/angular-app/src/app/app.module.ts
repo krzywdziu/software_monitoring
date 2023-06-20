@@ -17,6 +17,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { UserAlertsComponent } from './user-alerts/user-alerts.component';
 import { RegisterComponent } from './register/register.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RegisterComponent } from './register/register.component';
     ErrorPageComponent,
     AboutMeComponent,
     UserAlertsComponent,
-    RegisterComponent
+    RegisterComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

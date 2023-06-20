@@ -27,7 +27,8 @@
                       <p class="fw-bold text-uppercase">{{ alert.status }}</p>
                       <hr>
                       <p class="text-white-50">DATA POWSTANIA AWARII</p>
-                      <p class="fw-bold text-uppercase">{{ alert.timestamp }}</p>
+                      <p class="fw-bold text-uppercase"><span class="formattedDate">{{ formatDate(alert.timestamp) }}</span></p>
+
 
                       <hr>
                       <p class="text-white-50">PRZYPISANY DO</p>
