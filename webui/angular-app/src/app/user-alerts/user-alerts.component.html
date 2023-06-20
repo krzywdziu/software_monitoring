@@ -27,11 +27,11 @@
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                <tr *ngFor="let alert of userAlerts;" [ngClass]="getRowColor(alert.severity)">
+                                                                <tr *ngFor="let alert of userAlerts;" [ngClass]="utils.getRowColor(alert.severity)">
                                                                     <td>{{ alert.description }}</td>
                                                                     <td>{{ alert.severity }}</td>
                                                                     <td>{{ alert.status }}</td>
-                                                                    <td><span class="formattedDate">{{ formatDate(alert.timestamp) }}</span></td>
+                                                                    <td><span class="formattedDate">{{ utils.formatDate(alert.timestamp) }}</span></td>
                                                                     <td>
                                                                         <a class="btn btn-secondary" [routerLink]="'/alerts/' + alert.id">Więcej</a>
                                                                     </td>
@@ -64,10 +64,10 @@
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                <tr *ngFor="let alert of alertsResolved;" [ngClass]="getRowColor(alert.severity)">
+                                                                <tr *ngFor="let alert of alertsResolved;" [ngClass]="utils.getRowColor(alert.severity)">
                                                                     <td>{{ alert.description }}</td>
                                                                     <td>{{ alert.severity }}</td>
-                                                                    <td><span class="formattedDate">{{ formatDate(alert.timestamp) }}</span></td>
+                                                                    <td><span class="formattedDate">{{ utils.formatDate(alert.timestamp) }}</span></td>
                                                                     <td>
                                                                         <a class="btn btn-secondary" [routerLink]="'/alerts/' + alert.id">Więcej</a>
                                                                     </td>

@@ -18,6 +18,7 @@ import { AboutMeComponent } from './about-me/about-me.component';
 import { UserAlertsComponent } from './user-alerts/user-alerts.component';
 import { RegisterComponent } from './register/register.component';
 import { HistoryComponent } from './history/history.component';
+import {UtilsService} from "./utils.service";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { HistoryComponent } from './history/history.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AuthGuard, LogoutService],
+  providers: [AuthGuard, LogoutService, UtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,7 +14,7 @@
                       <p class="text-white-50">ADRES IP URZĄDZENIA</p>
                       <p class="fw-bold text-uppercase">{{ alert.boxIp }}</p>
                       <hr>
-                      <div [ngClass]="getRowColor(alert.severity)">
+                      <div [ngClass]="utils.getRowColor(alert.severity)">
                         <p class="text-50">PRIORYTET</p>
                         <p class="fw-bold text-uppercase">{{ alert.severity }}</p>
                       </div>
@@ -27,7 +27,7 @@
                       <p class="fw-bold text-uppercase">{{ alert.status }}</p>
                       <hr>
                       <p class="text-white-50">DATA POWSTANIA AWARII</p>
-                      <p class="fw-bold text-uppercase"><span class="formattedDate">{{ formatDate(alert.timestamp) }}</span></p>
+                      <p class="fw-bold text-uppercase"><span class="formattedDate">{{ utils.formatDate(alert.timestamp) }}</span></p>
 
 
                       <hr>
