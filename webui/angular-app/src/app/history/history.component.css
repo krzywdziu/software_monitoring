@@ -1,0 +1,32 @@
+.emerg-severity {
+    background-color: red;
+    color: black;
+}
+.alert-severity {
+    background-color: #ff5100;
+    color: black;
+}
+.crit-severity {
+    background-color: #ff7300;
+    color: black;
+}
+.err-severity {
+    background-color: #ffa600;
+    color: black;
+}
+.warning-severity {
+    background-color: #ffdd00;
+    color: black;
+}
+.notice-severity {
+    background-color: #9fdaff;
+    color: black;
+}
+.info-severity {
+    background-color: #5ebcff;
+    color: black;
+}
+.debug-severity {
+    background-color: #00a7ff;
+    color: black;
+}
