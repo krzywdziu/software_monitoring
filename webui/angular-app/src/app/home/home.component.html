@@ -33,7 +33,7 @@
                                     <td>{{ alert.description }}</td>
                                     <td>{{ alert.severity }}</td>
                                     <td>{{ alert.status }}</td>
-                                    <td>{{ alert.timestamp }}</td>
+                                    <td><span class="formattedDate">{{ formatDate(alert.timestamp) }}</span></td>
                                     <td>
                                       <span *ngIf="alert.userDto.id; else noUserId">Przypisany</span>
                                       <ng-template #noUserId>Nieprzypisany</ng-template>
@@ -75,7 +75,7 @@
                                   <td>{{ alert.description }}</td>
                                   <td>{{ alert.severity }}</td>
                                   <td>{{ alert.status }}</td>
-                                  <td>{{ alert.timestamp }}</td>
+                                  <td><span class="formattedDate">{{ formatDate(alert.timestamp) }}</span></td>
                                   <td>
                                     <a class="btn btn-secondary" [routerLink]="'/alerts/' + alert.id">Więcej</a>
                                   </td>
@@ -111,7 +111,7 @@
                                 <tr *ngFor="let alert of alertsResolved;" [ngClass]="getRowColor(alert.severity)">
                                   <td>{{ alert.description }}</td>
                                   <td>{{ alert.severity }}</td>
-                                  <td>{{ alert.timestamp }}</td>
+                                  <td><span class="formattedDate">{{ formatDate(alert.timestamp) }}</span></td>
                                   <td>
                                     <a class="btn btn-secondary" [routerLink]="'/alerts/' + alert.id">Więcej</a>
                                   </td>

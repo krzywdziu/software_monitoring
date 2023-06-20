@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {formatDate} from "@angular/common";
 
 @Component({
     selector: 'app-home',
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
                 (res: any) => {
                     this.alerts = res;
                     this.filterResolvedAlerts();
+                    this.filterResolvedAlertsByDate()
                 },
                 (err: any) => console.log('Error: ', err)
             );
@@ -75,4 +77,27 @@ export class HomeComponent implements OnInit {
                 return '';
         }
     }
+
+    formatDate(timestamp: string) {
+        const date = new Date(timestamp);
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        const seconds = String(date.getSeconds()).padStart(2, "0")
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = String(date.getFullYear());
+        const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+        return formattedDate;
+    }
+
+    filterResolvedAlertsByDate(): void {
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() - 7);
+
+        this.alertsResolved = this.alertsResolved.filter((alert) => {
+            const alertDate = new Date(alert.timestamp);
+            return alertDate >= currentDate;
+        });
+    }
+
 }
