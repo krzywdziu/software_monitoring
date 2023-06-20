@@ -17,6 +17,8 @@ export class RegisterComponent {
     password: new FormControl('', Validators.required)
   });
 
+  public isAdmin = localStorage.getItem('is_admin');
+
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('id_token');
   }
@@ -35,24 +37,27 @@ export class RegisterComponent {
     };
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post('http://localhost:8080/auth/register', registerData,
-        { headers: headers, observe: 'response', responseType: 'text'})
-        .pipe(
-            tap((response: any) => {
-              if (response.status === 200) {
-                console.log('User registered successfully!');
-                window.alert('Zarejestrowano pomyślnie');
-              } else {
-                console.log('Registration failed.');
-              }
-            }),
-            catchError(err => {
-              console.log('Error: ', err);
-              window.alert('Registration failed');
-              return throwError(err);
-            })
-        )
-        .subscribe();
+    if (this.isAdmin === 'true') {
+      this.http.post('http://localhost:8080/auth/register', registerData,
+          {headers: headers, observe: 'response', responseType: 'text'})
+          .pipe(
+              tap((response: any) => {
+                if (response.status === 200) {
+                  window.alert('Zarejestrowano pomyślnie');
+                } else {
+                  console.log('Registration failed.');
+                }
+              }),
+              catchError(err => {
+                console.log('Error: ', err);
+                window.alert('Registration failed');
+                return throwError(err);
+              })
+          )
+          .subscribe();
+    } else {
+      window.alert('Brak uprawnień administratora.');
+    }
   }
 
 }

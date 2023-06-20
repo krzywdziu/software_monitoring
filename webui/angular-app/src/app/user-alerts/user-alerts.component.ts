@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UserAlertsComponent implements OnInit {
 
   public userAlerts: any[] = [];
+  public alertsResolved: any[] = [];
   public user: any = {};
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
@@ -27,6 +28,7 @@ export class UserAlertsComponent implements OnInit {
         .subscribe(
             (res: any) => {
               this.userAlerts = res;
+              this.filterResolvedAlerts();
             },
             (err: any) => console.log('Error: ', err)
         );
@@ -36,6 +38,13 @@ export class UserAlertsComponent implements OnInit {
             (res) => this.user = res,
             err => console.log('Error: ', err)
         );
+  }
+
+  filterResolvedAlerts(): void {
+    if (this.userAlerts) {
+      this.alertsResolved = this.userAlerts.filter((alert) => alert.status === 'RESOLVED');
+      this.userAlerts = this.userAlerts.filter((alert) => alert.status !== 'RESOLVED');
+    }
   }
 
   getRowColor(severity: string): string {

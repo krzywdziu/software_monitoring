@@ -39,7 +39,9 @@ export class AboutMeComponent implements OnInit {
               (err: any) => console.log('Error: ', err)
           );
   }
-    getSpecializations(serviceman: any): string {
-        return serviceman.specializations.map((specialization: any) => specialization.name).join(', ');
+    getSpecializations(): string {
+        const specializations = this.me?.specializations ?? [];
+        const specializationNames = specializations.map((specialization: any) => specialization.name);
+        return specializationNames.join(', ');
     }
 }

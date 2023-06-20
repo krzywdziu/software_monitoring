@@ -8,7 +8,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ServicemenDashboardComponent implements OnInit {
   public servicemen: any[] = [];
-  constructor(private http: HttpClient) {}
+  public isAdmin = localStorage.getItem('is_admin');
+
+    constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     const id_token = localStorage.getItem('id_token');
