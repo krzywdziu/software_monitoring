@@ -47,7 +47,9 @@ public class AlertService {
                         System.out.println("File name: "+file.getName());
 
 
-                        File file_log = new File(System.getProperty("user.dir") + "/agent/src/main/java/com/zstwp/mans/logs/" + file.getName());
+                        File file_log = new File(prop.getProperty("AGENT_LOGS_PATH") + "\\"  + file.getName());
+
+                        String logfilepath = prop.getProperty("AGENT_LOGS_PATH") + "\\" + file.getName();
 
                         Scanner myReader = new Scanner(file_log);
 
@@ -90,7 +92,7 @@ public class AlertService {
 
                                 InetAddress.getLocalHost();
 
-                                AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
+                                AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time,logfilepath);
 
 
                                 kafkaProducer.sendMessage(alert);
@@ -113,7 +115,7 @@ public class AlertService {
 
                                 InetAddress.getLocalHost();
 
-                                AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
+                                AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time,logfilepath);
 
                                 kafkaProducer.sendMessage(alert);
 
@@ -135,7 +137,7 @@ public class AlertService {
 
                                 InetAddress.getLocalHost();
 
-                                AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
+                                AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time,logfilepath);
 
                                 kafkaProducer.sendMessage(alert);
 
@@ -157,7 +159,7 @@ public class AlertService {
 
                                 InetAddress.getLocalHost();
 
-                                AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time);
+                                AlertDto alert = new AlertDto(data,status,InetAddress.getLocalHost().toString(),severity,time,logfilepath);
 
                                 kafkaProducer.sendMessage(alert);
 
