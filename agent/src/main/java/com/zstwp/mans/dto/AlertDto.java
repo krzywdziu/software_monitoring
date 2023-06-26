@@ -13,4 +13,5 @@ public class AlertDto {
     String boxIp;
     AlertSeverity severity;
     LocalDateTime timestamp;
+    String logfilePath
 }
