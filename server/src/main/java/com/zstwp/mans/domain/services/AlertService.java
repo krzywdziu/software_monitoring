@@ -17,6 +17,7 @@ public class AlertService {
 
     private final AlertRepository alertRepository;
     private final UserService userService;
+    private final EmailService emailService;
 
     public List<Alert> getAllAlerts() {
         return alertRepository.findAll();
@@ -48,6 +49,9 @@ public class AlertService {
     }
 
     public Integer assignAlertToUser(long alertId, long userId) {
+        var user = userService.getUserById(userId);
+        var alert = getAlertById(alertId);
+        emailService.sendEmail(user.getEmail(), " New alert!", alert.getDescription());
         return alertRepository.assignAlertToUser(alertId, userService.getUserById(userId));
     }
 
