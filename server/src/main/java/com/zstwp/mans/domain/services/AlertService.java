@@ -5,6 +5,7 @@ import com.zstwp.mans.domain.database.entities.AlertSeverity;
 import com.zstwp.mans.domain.database.entities.AlertStatus;
 import com.zstwp.mans.domain.database.repositories.AlertRepository;
 import com.zstwp.mans.domain.dto.AlertDto;
+import com.zstwp.mans.domain.mappers.UserMapper;
 import com.zstwp.mans.domain.services.exceptions.AlertNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class AlertService {
 
     private final AlertRepository alertRepository;
     private final UserService userService;
+    private final UserMapper userMapper;
 
     public List<Alert> getAllAlerts() {
         return alertRepository.findAll();
@@ -57,7 +59,7 @@ public class AlertService {
 
         // check if alert already exists (in the db)
         if (true) {
-            alertRepository.save(new Alert(alert));
+            alertRepository.save(new Alert(alert, userMapper.toUser(alert.getUserDto())));
         }
 
     }
