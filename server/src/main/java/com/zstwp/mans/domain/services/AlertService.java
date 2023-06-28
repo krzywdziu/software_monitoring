@@ -31,6 +31,7 @@ public class AlertService {
     private final UserRepository userRepository;
     private final SpecializationRepository specializationRepository;
     private final SpecializationMapper specializationMapper;
+    private final EmailService emailService;
 
     public List<Alert> getAllAlerts() {
         return alertRepository.findAll();
