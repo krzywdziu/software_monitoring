@@ -24,14 +24,4 @@ public class AlertDto {
     AlertSeverity severity;
     LocalDateTime timestamp;
     UserDto userDto;
-
-    public AlertDto(Alert alert) {
-        this.id = alert.getId(); // ---
-        this.description = alert.getDescription();
-        this.status = alert.getStatus();
-        this.boxIp = alert.getBoxIp();
-        this.severity = alert.getSeverity();
-        this.timestamp = alert.getTimestamp();
-        this.userDto = new UserDto(alert.getUser());
-    }
 }

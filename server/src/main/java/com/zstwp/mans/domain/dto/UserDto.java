@@ -23,15 +23,5 @@ public class UserDto {
     String phoneNumber;
     @NotBlank @Email String email;
     @NotBlank UserRole role;
-    Set<Specialization> specializations;
-
-    public UserDto(User user) {
-        this.id = user.getId();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.phoneNumber = user.getPhoneNumber();
-        this.email = user.getEmail();
-        this.role = user.getRole();
-        this.specializations = user.getSpecializations();
-    }
+    Set<SpecializationDto> specializations;
 }

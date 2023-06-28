@@ -7,10 +7,11 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {SpecializationMapper.class})
 public interface UserMapper {
 
     @Mapping(source = "id", target = "id")
+    @Mapping(source = "specializations", target = "specializations", ignore = true)
     UserDto toUserDto(User user);
 
     List<UserDto> toUserDtos(List<User> users);

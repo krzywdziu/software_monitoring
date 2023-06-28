@@ -45,7 +45,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
                 GROUP BY a.user_id
                 ORDER BY COUNT(a.user_id)
                 LIMIT 1)
-            LIMIT 1;
+            LIMIT 1; 
             """,
         nativeQuery = true
     )

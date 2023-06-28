@@ -34,7 +34,7 @@ public class AlertController {
 
     @GetMapping("/{id}")
     public AlertDto getAlertById(@PathVariable long id) {
-        return alertMapper.toAlertDto(alertService.getAlertById(id));
+        return alertService.getAlertDtoById(id);
     }
 
     @GetMapping("/severity/{severity}")

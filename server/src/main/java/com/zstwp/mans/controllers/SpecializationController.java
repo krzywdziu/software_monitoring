@@ -1,7 +1,7 @@
 package com.zstwp.mans.controllers;
 
 
-import com.zstwp.mans.domain.database.entities.Specialization;
+import com.zstwp.mans.domain.dto.SpecializationDto;
 import com.zstwp.mans.domain.services.SpecializationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ public class SpecializationController {
     private final SpecializationService specializationService;
 
     @GetMapping
-    public List<Specialization> getAllSpecializations() {
+    public List<SpecializationDto> getAllSpecializations() {
         return specializationService.getAllSpecializations();
     }
 }

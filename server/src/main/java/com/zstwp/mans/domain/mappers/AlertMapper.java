@@ -19,4 +19,7 @@ public interface AlertMapper {
     List<AlertDto> toAlertDtos(List<Alert> alerts);
 
     AlertDto toAlertDto(KafkaAlertDto kafkaAlertDto);
+
+    @Mapping(source = "userDto", target = "user", ignore = true)
+    Alert toAlertEntity(AlertDto alertDto);
 }

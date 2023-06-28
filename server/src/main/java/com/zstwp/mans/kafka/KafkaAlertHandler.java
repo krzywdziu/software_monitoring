@@ -1,11 +1,15 @@
 package com.zstwp.mans.kafka;
 
 import com.zstwp.mans.domain.database.entities.AlertStatus;
+import com.zstwp.mans.domain.database.entities.Specialization;
 import com.zstwp.mans.domain.database.entities.User;
 import com.zstwp.mans.domain.database.entities.UserSpecialization;
+import com.zstwp.mans.domain.database.repositories.SpecializationRepository;
 import com.zstwp.mans.domain.dto.AlertDto;
 import com.zstwp.mans.domain.dto.UserDto;
 import com.zstwp.mans.domain.mappers.AlertMapper;
+import com.zstwp.mans.domain.mappers.SpecializationMapper;
+import com.zstwp.mans.domain.mappers.UserMapper;
 import com.zstwp.mans.domain.services.AlertService;
 import com.zstwp.mans.domain.services.EmailService;
 import com.zstwp.mans.domain.services.UserService;
@@ -14,7 +18,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -28,6 +34,12 @@ public class KafkaAlertHandler {
     private final UserService userService;
 
     private final AlertMapper alertMapper;
+
+    private final UserMapper userMapper;
+
+    private final SpecializationMapper specializationMapper;
+
+    private final SpecializationRepository specializationRepository;
 
 
     private static final Random PRNG = new Random();
@@ -49,7 +61,10 @@ public class KafkaAlertHandler {
 
         try {
             User user = userService.getUserBySpecializationAndFewestAlerts(specialization.toString());
-            alertDto.setUserDto(new UserDto(user));
+            Set<Specialization> userSpecializations = specializationRepository.findAllByUsers(user);
+            UserDto userDto = userMapper.toUserDto(user);
+            userDto.setSpecializations(specializationMapper.toDtos(userSpecializations));
+            alertDto.setUserDto(userMapper.toUserDto(user));
             alertDto.setStatus(AlertStatus.ASSIGNED);
 
             System.out.println(alertDto.toString());
